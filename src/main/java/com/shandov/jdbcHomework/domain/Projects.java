@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 @Data
 public class Projects {
 
-    private Long project_id;
-    private String project_name;
-    private String project_description;
-    private BigDecimal cost;
+    private Long projectId;
+    private String projectName;
+    private String projectDescription;
+    private BigDecimal projectCost;
 }

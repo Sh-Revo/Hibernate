@@ -8,9 +8,9 @@ import java.math.BigDecimal;
 @Data
 public class Developers {
 
-    private Long dev_id;
-    private String dev_name;
-    private Long dev_age;
-    private String dev_gender;
-    private BigDecimal salary;
+    private Long devId;
+    private String devName;
+    private Long devAge;
+    private String devGender;
+    private BigDecimal devSalary;
 }

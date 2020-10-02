@@ -68,4 +68,32 @@ public class DevelopersDAO extends GenericDAO{
 
     }
 
+    public List<Developers> getAllMiddleDevelopers(String message){
+
+        try  (Connection connection = DriverManager.getConnection(URL, username, password);
+              PreparedStatement statement = connection.prepareStatement("select dev.* from developers dev " +
+                      "join dev_skills ds on dev.dev_id = ds.dev_id " +
+                      "join skills s on dev.dev_id = s.skills_id " +
+                      "where s.skills_lvl = ?;")){
+            statement.setString(1, message);
+            ResultSet resultSet = statement.executeQuery();
+            List<Developers> developersList = new ArrayList<>();
+            while (resultSet.next()){
+                Developers developers = new Developers();
+                developers.setDevId(resultSet.getLong("dev_id"));
+                developers.setDevName(resultSet.getString("dev_name"));
+                developers.setDevAge(resultSet.getLong("dev_age"));
+                developers.setDevGender(resultSet.getString("dev_gender"));
+                developers.setDevSalary(resultSet.getBigDecimal("salary"));
+                developersList.add(developers);
+            }
+            return developersList;
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+
 }

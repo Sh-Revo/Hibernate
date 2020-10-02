@@ -17,6 +17,9 @@ public class Main {
         System.out.println("Зарплата всех разработчиков отдельного проекта: " + projectsService.salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
         System.out.println("Спикок разработчиков отдельного проекта " + developersService.getAllDevelopersByProjectName("Internet_Shop"));
         System.out.println("Спикок Java разработчиков " + developersService.getAllJavaDevelopers("Java"));
+        System.out.println("Спикок Middle разработчиков " + developersService.getAllMiddleDevelopers("Middle"));
+
+        //System.out.println("Cписок проектов " + projectsService.getAllProjects());
 
     }
 }

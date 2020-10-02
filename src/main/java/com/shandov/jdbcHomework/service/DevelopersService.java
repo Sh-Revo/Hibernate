@@ -19,4 +19,8 @@ public class DevelopersService {
     public List<Developers> getAllJavaDevelopers(String message){
         return developersDAO.getAllJavaDevelopers(message);
     }
+
+    public List<Developers> getAllMiddleDevelopers(String message){
+        return developersDAO.getAllMiddleDevelopers(message);
+    }
 }

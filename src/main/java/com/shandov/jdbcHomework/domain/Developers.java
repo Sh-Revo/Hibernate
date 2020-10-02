@@ -13,4 +13,16 @@ public class Developers {
     private Long devAge;
     private String devGender;
     private BigDecimal devSalary;
+
+    @Override
+    public String toString() {
+        return "Developers{" +
+                "devId=" + devId +
+                ", devName='" + devName + '\'' +
+                ", devAge=" + devAge +
+                ", devGender='" + devGender + '\'' +
+                ", devSalary=" + devSalary +
+                '}' + "\n";
+    }
 }
+

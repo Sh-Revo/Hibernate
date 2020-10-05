@@ -23,6 +23,6 @@ public class Projects {
                 ", projectDescription='" + projectDescription + '\'' +
                 ", projectStart=" + projectStart +
                 ", projectCost=" + projectCost +
-                '}';
+                '}' + "\n";
     }
 }

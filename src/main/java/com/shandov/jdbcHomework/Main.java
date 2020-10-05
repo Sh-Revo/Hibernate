@@ -1,16 +1,10 @@
 package com.shandov.jdbcHomework;
 
 
-import com.shandov.jdbcHomework.dao.CompaiesDAO;
-import com.shandov.jdbcHomework.dao.CustomersDAO;
-import com.shandov.jdbcHomework.dao.DevelopersDAO;
-import com.shandov.jdbcHomework.dao.ProjectsDAO;
+import com.shandov.jdbcHomework.dao.*;
 import com.shandov.jdbcHomework.domain.Companies;
 import com.shandov.jdbcHomework.domain.Developers;
-import com.shandov.jdbcHomework.service.CompaniesService;
-import com.shandov.jdbcHomework.service.CustomersService;
-import com.shandov.jdbcHomework.service.DevelopersService;
-import com.shandov.jdbcHomework.service.ProjectsService;
+import com.shandov.jdbcHomework.service.*;
 
 public class Main {
 
@@ -18,6 +12,7 @@ public class Main {
     public static final DevelopersService developersService = new DevelopersService(new DevelopersDAO());
     public static final CompaniesService companiesService = new CompaniesService(new CompaiesDAO());
     public static final CustomersService customersService = new CustomersService(new CustomersDAO());
+    public static final SkillsService skillsService = new SkillsService(new SkillsDAO());
 
     public static void main(String[] args) {
         //System.out.println("\nЗарплата всех разработчиков отдельного проекта: " + projectsService.salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
@@ -52,11 +47,21 @@ public class Main {
         // System.out.println("\nСписок всех компаний " + companiesService.getAllCompanies());
 
 
+
         //-----Customers
 
         // customersService.insertIntoCustomers();
         // customersService.updateInCustomers();
         // customersService.deleteFromCustomers();
-        System.out.println("\nСписок всех клиентов " + customersService.getAllCustomers());
+        // System.out.println("\nСписок всех клиентов " + customersService.getAllCustomers());
+
+
+
+        //-----Skills
+
+        // skillsService.insertIntoSkills();
+        // skillsService.updateInSkills();
+        // skillsService.deleteFromSkills();
+        // System.out.println("\nНазвания всех скиллов " + skillsService.getAllSkills());
     }
 }

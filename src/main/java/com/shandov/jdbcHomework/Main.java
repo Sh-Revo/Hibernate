@@ -2,11 +2,13 @@ package com.shandov.jdbcHomework;
 
 
 import com.shandov.jdbcHomework.dao.CompaiesDAO;
+import com.shandov.jdbcHomework.dao.CustomersDAO;
 import com.shandov.jdbcHomework.dao.DevelopersDAO;
 import com.shandov.jdbcHomework.dao.ProjectsDAO;
 import com.shandov.jdbcHomework.domain.Companies;
 import com.shandov.jdbcHomework.domain.Developers;
 import com.shandov.jdbcHomework.service.CompaniesService;
+import com.shandov.jdbcHomework.service.CustomersService;
 import com.shandov.jdbcHomework.service.DevelopersService;
 import com.shandov.jdbcHomework.service.ProjectsService;
 
@@ -15,6 +17,7 @@ public class Main {
     public static final ProjectsService projectsService = new ProjectsService(new ProjectsDAO());
     public static final DevelopersService developersService = new DevelopersService(new DevelopersDAO());
     public static final CompaniesService companiesService = new CompaniesService(new CompaiesDAO());
+    public static final CustomersService customersService = new CustomersService(new CustomersDAO());
 
     public static void main(String[] args) {
         //System.out.println("\nЗарплата всех разработчиков отдельного проекта: " + projectsService.salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
@@ -47,5 +50,13 @@ public class Main {
         // companiesService.updateInCompanies();
         // companiesService.deleteFromCompanies();
         // System.out.println("\nСписок всех компаний " + companiesService.getAllCompanies());
+
+
+        //-----Customers
+
+        // customersService.insertIntoCustomers();
+        // customersService.updateInCustomers();
+        // customersService.deleteFromCustomers();
+        System.out.println("\nСписок всех клиентов " + customersService.getAllCustomers());
     }
 }

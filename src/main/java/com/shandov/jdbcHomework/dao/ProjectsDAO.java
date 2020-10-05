@@ -36,7 +36,7 @@ public class ProjectsDAO extends GenericDAO{
 
 
 
-    public List<Projects> getAllProjects(){
+    public List<Projects> getAllProjectsByCountDevelopers(){
         try (Connection connection = DriverManager.getConnection(URL, username, password);
             Statement statement = connection.createStatement()){
             connection.setAutoCommit(false);
@@ -60,6 +60,78 @@ public class ProjectsDAO extends GenericDAO{
 
     }
 
+    public List<Projects> getAllProjects(){
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+            Statement statement =connection.createStatement()){
+            connection.setAutoCommit(false);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM projects");
+            List<Projects> projectsList = new ArrayList<>();
+            while (resultSet.next()){
+                Projects projects = new Projects();
+                projects.setProjectId(resultSet.getLong("project_id"));
+                projects.setProjectName(resultSet.getString("project_name"));
+                projects.setProjectDescription(resultSet.getString("project_description"));
+                projects.setProjectCost(resultSet.getBigDecimal("cost"));
+                projects.setProjectStart(resultSet.getDate("project_start"));
+                projectsList.add(projects);
+            }
+            return projectsList;
 
+        }
 
+        catch (SQLException e){
+            throw new RuntimeException();
+        }
+    }
+
+    public void insertIntoProjects() throws SQLException {
+        Connection connection = DriverManager.getConnection(URL, username, password);
+        Statement statement = connection.createStatement();
+        try {
+            connection.setAutoCommit(false);
+            statement.execute("INSERT INTO projects(project_id, project_name, project_description, cost, project_start) VALUES(7, 'Doggy', 'FleetWord', 15000, '2010-11-13')");
+            connection.commit();
+        }
+        catch (SQLException e){
+            connection.rollback();
+        }
+        finally {
+            connection.close();
+            statement.close();
+        }
+    }
+
+    public void updateIntoProjects() throws SQLException{
+        Connection connection = DriverManager.getConnection(URL, username, password);
+        Statement statement = connection.createStatement();
+        try {
+            connection.setAutoCommit(false);
+            statement.executeUpdate("UPDATE projects SET project_description = 'DogFood' WHERE project_id = 7");
+            connection.commit();
+        }
+        catch (SQLException e){
+            connection.rollback();
+        }
+        finally {
+            connection.close();
+            statement.close();
+        }
+    }
+
+    public void deleteFromProjects() throws SQLException{
+        Connection connection = DriverManager.getConnection(URL, username, password);
+        Statement statement = connection.createStatement();
+        try {
+            connection.setAutoCommit(false);
+            statement.executeUpdate("DELETE FROM projects WHERE project_id = 7");
+            connection.commit();
+        }
+        catch (SQLException e){
+            connection.rollback();
+        }
+        finally {
+            connection.close();
+            statement.close();
+        }
+    }
 }

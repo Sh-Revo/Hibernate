@@ -19,12 +19,23 @@ public class Main {
         System.out.println("Спикок Java разработчиков " + developersService.getAllJavaDevelopers("Java"));
         System.out.println("Спикок Middle разработчиков " + developersService.getAllMiddleDevelopers("Middle"));
 
-        System.out.println("Cписок проектов с кол-во разработчиков " + projectsService.getAllProjectsByCountDevelopers());
 
+        //-----Projects
 
        // projectsService.insertIntoProjects();
        // projectsService.updateIntoProjects();
        // projectsService.deleteFromProjects();
+
         System.out.println("Список всех проектов " + projectsService.getAllProjects());
+
+
+        //-----Developers
+
+        // developersService.insertIntoDevelopers();
+        // developersService.updateIntoDevelopers();
+        // developersService.deleteFromDevelopers();
+        System.out.println("Список всех разработчиков " + developersService.getAllDevelopers());
+
+
     }
 }

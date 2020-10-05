@@ -94,6 +94,77 @@ public class DevelopersDAO extends GenericDAO{
 
     }
 
+    public List<Developers> getAllDevelopers(){
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             Statement statement = connection.createStatement()) {
+            connection.setAutoCommit(false);
 
+            ResultSet resultSet = statement.executeQuery("select * from developers");
+            List<Developers> developersList = new ArrayList<>();
+            while (resultSet.next()) {
+                Developers developers = new Developers();
+                developers.setDevId(resultSet.getLong("dev_id"));
+                developers.setDevName(resultSet.getString("dev_name"));
+                developers.setDevAge(resultSet.getLong("dev_age"));
+                developers.setDevGender(resultSet.getString("dev_gender"));
+                developers.setDevSalary(resultSet.getBigDecimal("salary"));
 
+                developersList.add(developers);
+            }
+            return developersList;
+        } catch (SQLException e){
+            throw  new RuntimeException();
+        }
+    }
+
+    public void insertIntoDevelopers() throws SQLException{
+        Connection connection = DriverManager.getConnection(URL, username, password);
+        Statement statement = connection.createStatement();
+        try {
+            connection.setAutoCommit(false);
+            statement.execute("INSERT into developers(dev_id, dev_name, dev_age, dev_gender, salary) VALUES (6, 'Vasya', 23, 'Male', 8000)");
+            connection.commit();
+        }
+        catch (SQLException e){
+            connection.rollback();
+        }
+        finally {
+            connection.close();
+            statement.close();
+        }
+    }
+
+    public void updateIntoDevelopers() throws SQLException{
+        Connection connection = DriverManager.getConnection(URL, username, password);
+        Statement statement = connection.createStatement();
+        try {
+            connection.setAutoCommit(false);
+            statement.executeUpdate("UPDATE developers SET salary = 10000 WHERE dev_id = 6");
+            connection.commit();
+        }
+        catch (SQLException e){
+            connection.rollback();
+        }
+        finally {
+            connection.close();
+            statement.close();
+        }
+    }
+
+    public void deleteFromDevelopers() throws SQLException{
+        Connection connection = DriverManager.getConnection(URL, username, password);
+        Statement statement = connection.createStatement();
+        try {
+            connection.setAutoCommit(false);
+            statement.executeUpdate("DELETE FROM developers WHERE dev_id = 6");
+            connection.commit();
+        }
+        catch (SQLException e){
+            connection.rollback();
+        }
+        finally {
+            connection.close();
+            statement.close();
+        }
+    }
 }

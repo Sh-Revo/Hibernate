@@ -1,8 +1,8 @@
-package com.shandov.jdbcHomework.service;
+package com.shandov.jdbc1homework.service;
 
 
-import com.shandov.jdbcHomework.dao.CompaiesDAO;
-import com.shandov.jdbcHomework.domain.Companies;
+import com.shandov.jdbc1homework.dao.CompaiesDAO;
+import com.shandov.jdbc1homework.domain.Companies;
 import lombok.RequiredArgsConstructor;
 
 import java.sql.SQLException;
@@ -13,30 +13,30 @@ public class CompaniesService {
 
     private final CompaiesDAO compaiesDAO;
 
-    public List<Companies> getAllCompanies(){
+    public List<Companies> getAllCompanies() {
         return compaiesDAO.getAllCompanies();
     }
 
-    public void insertIntoCompanies(){
-        try{
+    public void insertIntoCompanies() {
+        try {
             compaiesDAO.insertIntoCompanies();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateInCompanies(){
-        try{
+    public void updateInCompanies() {
+        try {
             compaiesDAO.updateInCompanies();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteFromCompanies(){
-        try{
+    public void deleteFromCompanies() {
+        try {
             compaiesDAO.deleteFromCompanies();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

@@ -1,7 +1,7 @@
-package com.shandov.jdbcHomework.service;
+package com.shandov.jdbc1homework.service;
 
-import com.shandov.jdbcHomework.dao.ProjectsDAO;
-import com.shandov.jdbcHomework.domain.Projects;
+import com.shandov.jdbc1homework.dao.ProjectsDAO;
+import com.shandov.jdbc1homework.domain.Projects;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
@@ -14,38 +14,38 @@ public class ProjectsService {
 
     private final ProjectsDAO projectsDAO;
 
-    public BigDecimal salaryAllDevelopersByProjectName(String message){
+    public BigDecimal salaryAllDevelopersByProjectName(String message) {
         return projectsDAO.salaryAllDevelopersByProjectName(message);
     }
 
-    public List<Projects> getAllProjectsByCountDevelopers(){
+    public List<Projects> getAllProjectsByCountDevelopers() {
         return projectsDAO.getAllProjectsByCountDevelopers();
     }
 
-    public List<Projects> getAllProjects(){
+    public List<Projects> getAllProjects() {
         return projectsDAO.getAllProjects();
     }
 
-    public void insertIntoProjects(){
+    public void insertIntoProjects() {
         try {
             projectsDAO.insertIntoProjects();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateIntoProjects(){
+    public void updateIntoProjects() {
         try {
             projectsDAO.updateIntoProjects();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteFromProjects(){
+    public void deleteFromProjects() {
         try {
             projectsDAO.deleteFromProjects();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

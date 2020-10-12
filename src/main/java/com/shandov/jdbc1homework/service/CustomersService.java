@@ -1,41 +1,41 @@
-package com.shandov.jdbcHomework.service;
+package com.shandov.jdbc1homework.service;
 
-import com.shandov.jdbcHomework.dao.CustomersDAO;
-import com.shandov.jdbcHomework.domain.Customers;
+import com.shandov.jdbc1homework.dao.CustomersDAO;
+import com.shandov.jdbc1homework.domain.Customers;
 import lombok.RequiredArgsConstructor;
 
 import java.sql.SQLException;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class CustomersService  {
+public class CustomersService {
 
     private final CustomersDAO customersDAO;
 
-    public List<Customers> getAllCustomers(){
+    public List<Customers> getAllCustomers() {
         return customersDAO.getAllCustomers();
     }
 
-    public void insertIntoCustomers(){
-        try{
+    public void insertIntoCustomers() {
+        try {
             customersDAO.insertIntoCustomers();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateInCustomers(){
-        try{
+    public void updateInCustomers() {
+        try {
             customersDAO.updateInCustomers();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deleteFromCustomers(){
-        try{
+    public void deleteFromCustomers() {
+        try {
             customersDAO.deleteFromCustomers();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

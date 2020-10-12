@@ -1,4 +1,4 @@
-package com.shandov.jdbcHomework.dao;
+package com.shandov.jdbc1homework.dao;
 
 
 public abstract class GenericDAO {

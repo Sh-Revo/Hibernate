@@ -1,10 +1,10 @@
-package com.shandov.jdbcHomework;
+package com.shandov.jdbc1homework;
 
 
-import com.shandov.jdbcHomework.dao.*;
-import com.shandov.jdbcHomework.domain.Companies;
-import com.shandov.jdbcHomework.domain.Developers;
-import com.shandov.jdbcHomework.service.*;
+import com.shandov.jdbc1homework.dao.*;
+import com.shandov.jdbc1homework.service.*;
+
+import java.math.BigDecimal;
 
 public class Main {
 
@@ -21,23 +21,21 @@ public class Main {
         //System.out.println("\nСпикок Middle разработчиков " + developersService.getAllMiddleDevelopers("Middle"));
 
 
-
         //-----Projects
 
-       // projectsService.insertIntoProjects();
-       // projectsService.updateIntoProjects();
-       // projectsService.deleteFromProjects();
+        // projectsService.insertIntoProjects();
+        // projectsService.updateIntoProjects();
+        // projectsService.deleteFromProjects();
 
-       // System.out.println("\nСписок всех проектов " + projectsService.getAllProjects());
+        // System.out.println("\nСписок всех проектов " + projectsService.getAllProjects());
 
 
         //-----Developers
 
-        // developersService.insertIntoDevelopers();
+        // developersService.insertIntoDevelopers("Ivan", 24l, "Male", BigDecimal.valueOf(11000));
         // developersService.updateIntoDevelopers();
         // developersService.deleteFromDevelopers();
-        // System.out.println("\nСписок всех разработчиков " + developersService.getAllDevelopers());
-
+         System.out.println("\nСписок всех разработчиков " + developersService.getAllDevelopers());
 
 
         //-----Companies
@@ -48,14 +46,12 @@ public class Main {
         // System.out.println("\nСписок всех компаний " + companiesService.getAllCompanies());
 
 
-
         //-----Customers
 
         // customersService.insertIntoCustomers();
         // customersService.updateInCustomers();
         // customersService.deleteFromCustomers();
         // System.out.println("\nСписок всех клиентов " + customersService.getAllCustomers());
-
 
 
         //-----Skills

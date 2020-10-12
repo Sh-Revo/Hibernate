@@ -1,4 +1,4 @@
-package com.shandov.jdbcHomework.domain;
+package com.shandov.jdbc1homework.domain;
 
 import lombok.Data;
 

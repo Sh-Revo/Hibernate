@@ -1,19 +1,20 @@
 package com.shandov.jdbc1homework.dao;
 
+import com.shandov.jdbc1homework.InternalException;
+import com.shandov.jdbc1homework.domain.Companies;
 import com.shandov.jdbc1homework.domain.Customers;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Slf4j
 public class CustomersDAO extends GenericDAO {
 
 
     public List<Customers> getAllCustomers() {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             Statement statement = connection.createStatement();
-        ) {
-
+             Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select * from customers");
             List<Customers> customersList = new ArrayList<>();
             while (resultSet.next()) {
@@ -24,54 +25,55 @@ public class CustomersDAO extends GenericDAO {
                 customersList.add(customers);
             }
             return customersList;
-
         } catch (SQLException e) {
-            throw new RuntimeException();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 
-    public void insertIntoCustomers() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.execute("INSERT into customers(customer_id, customer_name, customer_second_name) VALUES (4, 'Volodya', 'Spilov')");
-            connection.commit();
+    public void insertIntoCustomers(String name, String secondName)  {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("INSERT into customers(customer_name, customer_second_name) VALUES ( ?, ?)")) {
+
+            statement.setString(1, name);
+            statement.setString(2, secondName);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
         }
     }
 
-    public void updateInCustomers() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.executeUpdate("UPDATE customers SET customer_second_name = 'Moiseenko' WHERE customer_id = 4");
-            connection.commit();
+    public void updateInCustomers(Long id, String secondName)  {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("UPDATE customers SET customer_second_name = ? WHERE customer_id = ?")) {
+
+            statement.setString(1, secondName);
+            statement.setLong(2, id);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
         }
     }
 
-    public void deleteFromCustomers() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.executeUpdate("DELETE FROM customers WHERE customer_id = 4");
-            connection.commit();
+    public void deleteFromCustomers(Long id)  {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM customers WHERE customer_id = ?")) {
+
+            statement.setLong(1, id);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
         }
     }
 }

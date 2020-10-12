@@ -48,9 +48,9 @@ public class Main {
 
         //-----Customers
 
-        // customersService.insertIntoCustomers();
-        // customersService.updateInCustomers();
-        // customersService.deleteFromCustomers();
+        // customersService.insertIntoCustomers("Vladimir", "Belov");
+        // customersService.updateInCustomers(4l, "Belyaev");
+        // customersService.deleteFromCustomers(4l);
         // System.out.println("\nСписок всех клиентов " + customersService.getAllCustomers());
 
 

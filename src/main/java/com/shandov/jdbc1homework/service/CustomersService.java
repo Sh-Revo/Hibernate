@@ -16,27 +16,15 @@ public class CustomersService {
         return customersDAO.getAllCustomers();
     }
 
-    public void insertIntoCustomers() {
-        try {
-            customersDAO.insertIntoCustomers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void insertIntoCustomers(String name, String secondName) {
+        customersDAO.insertIntoCustomers(name, secondName);
     }
 
-    public void updateInCustomers() {
-        try {
-            customersDAO.updateInCustomers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void updateInCustomers(Long id, String secondName) {
+        customersDAO.updateInCustomers(id, secondName);
     }
 
-    public void deleteFromCustomers() {
-        try {
-            customersDAO.deleteFromCustomers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteFromCustomers(Long id) {
+        customersDAO.deleteFromCustomers(id);
     }
 }

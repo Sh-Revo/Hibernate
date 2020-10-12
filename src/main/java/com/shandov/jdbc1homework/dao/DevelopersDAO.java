@@ -132,7 +132,7 @@ public class DevelopersDAO extends GenericDAO {
 
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("INSERT into developers(dev_name, dev_age, dev_gender, salary) VALUES ( ?, ? , ?, ?)");) {
+             PreparedStatement statement = connection.prepareStatement("INSERT into developers(dev_name, dev_age, dev_gender, salary) VALUES ( ?, ? , ?, ?)")) {
 
             statement.setString(1, devName);
             statement.setLong(2, devAge);

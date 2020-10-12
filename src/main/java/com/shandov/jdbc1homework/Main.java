@@ -32,17 +32,17 @@ public class Main {
 
         //-----Developers
 
-         developersService.insertIntoDevelopers("Ivan", 24l, "Male", BigDecimal.valueOf(11000));
-         developersService.updateIntoDevelopers(15l, BigDecimal.valueOf(10000));
-         developersService.deleteFromDevelopers(14l);
-         System.out.println("\nСписок всех разработчиков " + developersService.getAllDevelopers());
+        // developersService.insertIntoDevelopers("Ivan", 24l, "Male", BigDecimal.valueOf(11000));
+        // developersService.updateIntoDevelopers(15l, BigDecimal.valueOf(10000));
+        // developersService.deleteFromDevelopers(14l);
+        // System.out.println("\nСписок всех разработчиков " + developersService.getAllDevelopers());
 
 
         //-----Companies
 
-        // companiesService.insertIntoCompanies();
-        // companiesService.updateInCompanies();
-        // companiesService.deleteFromCompanies();
+        // companiesService.insertIntoCompanies("Volodya", "Paris");
+        // companiesService.updateInCompanies(8l, "Ubisoft");
+        // companiesService.deleteFromCompanies(8l);
         // System.out.println("\nСписок всех компаний " + companiesService.getAllCompanies());
 
 

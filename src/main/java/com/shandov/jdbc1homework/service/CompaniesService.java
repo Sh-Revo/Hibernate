@@ -17,27 +17,15 @@ public class CompaniesService {
         return compaiesDAO.getAllCompanies();
     }
 
-    public void insertIntoCompanies() {
-        try {
-            compaiesDAO.insertIntoCompanies();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void insertIntoCompanies(String name, String location) {
+        compaiesDAO.insertIntoCompanies(name, location);
     }
 
-    public void updateInCompanies() {
-        try {
-            compaiesDAO.updateInCompanies();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void updateInCompanies(Long id, String name) {
+        compaiesDAO.updateInCompanies(id, name);
     }
 
-    public void deleteFromCompanies() {
-        try {
-            compaiesDAO.deleteFromCompanies();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteFromCompanies(Long id) {
+        compaiesDAO.deleteFromCompanies(id);
     }
 }

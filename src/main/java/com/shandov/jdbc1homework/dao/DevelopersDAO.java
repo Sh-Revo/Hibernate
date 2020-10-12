@@ -42,7 +42,10 @@ public class DevelopersDAO extends GenericDAO {
             }
             return developersList;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
 
     }
@@ -68,7 +71,10 @@ public class DevelopersDAO extends GenericDAO {
             }
             return developersList;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
 
     }
@@ -102,8 +108,6 @@ public class DevelopersDAO extends GenericDAO {
     public List<Developers> getAllDevelopers() {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              Statement statement = connection.createStatement()) {
-
-
             ResultSet resultSet = statement.executeQuery("select * from developers");
             List<Developers> developersList = new ArrayList<>();
             while (resultSet.next()) {
@@ -113,7 +117,6 @@ public class DevelopersDAO extends GenericDAO {
                 developers.setDevAge(resultSet.getLong("dev_age"));
                 developers.setDevGender(resultSet.getString("dev_gender"));
                 developers.setDevSalary(resultSet.getBigDecimal("salary"));
-
                 developersList.add(developers);
             }
             return developersList;
@@ -144,33 +147,32 @@ public class DevelopersDAO extends GenericDAO {
         }
     }
 
-    public void updateIntoDevelopers() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.executeUpdate("UPDATE developers SET salary = 10000 WHERE dev_id = 6");
-            connection.commit();
+    public void updateIntoDevelopers(Long id, BigDecimal salary) {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("UPDATE developers SET salary = ? WHERE dev_id = ?")) {
+
+            statement.setBigDecimal(1, salary);
+            statement.setLong(2, id);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
         }
     }
 
-    public void deleteFromDevelopers() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.executeUpdate("DELETE FROM developers WHERE dev_id = 6");
-            connection.commit();
+    public void deleteFromDevelopers(Long id) {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM developers WHERE dev_id = ?")) {
+
+            statement.setLong(1, id);
+            statement.executeUpdate();
+
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
         }
     }
 }

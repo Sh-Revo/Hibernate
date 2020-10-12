@@ -23,9 +23,7 @@ public class ProjectsDAO extends GenericDAO {
             statement.setString(1, message);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-
-                BigDecimal sum = resultSet.getBigDecimal(2);
-                return sum;
+                return resultSet.getBigDecimal(2);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

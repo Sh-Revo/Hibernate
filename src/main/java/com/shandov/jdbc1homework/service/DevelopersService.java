@@ -34,19 +34,11 @@ public class DevelopersService {
         developersDAO.insertIntoDevelopers(devName, devAge, devGender, devSalary);
     }
 
-    public void updateIntoDevelopers() {
-        try {
-            developersDAO.updateIntoDevelopers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void updateIntoDevelopers(Long id, BigDecimal salary) {
+        developersDAO.updateIntoDevelopers(id,salary);
     }
 
-    public void deleteFromDevelopers() {
-        try {
-            developersDAO.deleteFromDevelopers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteFromDevelopers(Long id) {
+        developersDAO.deleteFromDevelopers(id);
     }
 }

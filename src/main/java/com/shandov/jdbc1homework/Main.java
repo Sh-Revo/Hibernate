@@ -32,9 +32,9 @@ public class Main {
 
         //-----Developers
 
-        // developersService.insertIntoDevelopers("Ivan", 24l, "Male", BigDecimal.valueOf(11000));
-        // developersService.updateIntoDevelopers();
-        // developersService.deleteFromDevelopers();
+         developersService.insertIntoDevelopers("Ivan", 24l, "Male", BigDecimal.valueOf(11000));
+         developersService.updateIntoDevelopers(15l, BigDecimal.valueOf(10000));
+         developersService.deleteFromDevelopers(14l);
          System.out.println("\nСписок всех разработчиков " + developersService.getAllDevelopers());
 
 

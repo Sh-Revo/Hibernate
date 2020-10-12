@@ -1,14 +1,18 @@
 package com.shandov.jdbc1homework.dao;
 
 
+import com.shandov.jdbc1homework.InternalException;
 import com.shandov.jdbc1homework.domain.Projects;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-
+@Slf4j
 public class ProjectsDAO extends GenericDAO {
 
 
@@ -22,11 +26,15 @@ public class ProjectsDAO extends GenericDAO {
                      "group by pr.project_name;")) {
             statement.setString(1, message);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 return resultSet.getBigDecimal(2);
             }
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
         return null;
     }
@@ -49,8 +57,10 @@ public class ProjectsDAO extends GenericDAO {
             }
             return projectsList;
         } catch (SQLException e) {
-
-            throw new RuntimeException(e);
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
 
 
@@ -74,52 +84,55 @@ public class ProjectsDAO extends GenericDAO {
             return projectsList;
 
         } catch (SQLException e) {
-            throw new RuntimeException();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 
-    public void insertIntoProjects() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.execute("INSERT INTO projects(project_id, project_name, project_description, cost, project_start) VALUES(7, 'Doggy', 'FleetWord', 15000, '2010-11-13')");
-            connection.commit();
+    public void insertIntoProjects(String name, String description, BigDecimal cost, LocalDate start) {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO projects(project_name, project_description, cost, project_start) VALUES(?, ?, ?, ?)")) {
+
+            statement.setString(1, name);
+            statement.setString(2, description);
+            statement.setBigDecimal(3, cost);
+            statement.setDate(4, Date.valueOf(start));
+            statement.executeUpdate();
+
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 
-    public void updateIntoProjects() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.executeUpdate("UPDATE projects SET project_description = 'DogFood' WHERE project_id = 7");
-            connection.commit();
+    public void updateIntoProjects(Long id, String description) {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("UPDATE projects SET project_description = ? WHERE project_id = ?");) {
+            statement.setString(1, description);
+            statement.setLong(2, id);
+            statement.executeUpdate();
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 
-    public void deleteFromProjects() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.executeUpdate("DELETE FROM projects WHERE project_id = 7");
-            connection.commit();
+    public void deleteFromProjects(Long id) {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM projects WHERE project_id = ?")) {
+            statement.setLong(1, id);
+            statement.executeUpdate();
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 }

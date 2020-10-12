@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -26,27 +28,15 @@ public class ProjectsService {
         return projectsDAO.getAllProjects();
     }
 
-    public void insertIntoProjects() {
-        try {
-            projectsDAO.insertIntoProjects();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void insertIntoProjects(String name, String description, BigDecimal cost, LocalDate start) {
+        projectsDAO.insertIntoProjects(name, description, cost, start);
     }
 
-    public void updateIntoProjects() {
-        try {
-            projectsDAO.updateIntoProjects();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void updateIntoProjects(Long id, String description) {
+        projectsDAO.updateIntoProjects(id, description);
     }
 
-    public void deleteFromProjects() {
-        try {
-            projectsDAO.deleteFromProjects();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteFromProjects(Long id) {
+        projectsDAO.deleteFromProjects(id);
     }
 }

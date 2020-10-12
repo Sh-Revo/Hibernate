@@ -5,6 +5,8 @@ import com.shandov.jdbc1homework.dao.*;
 import com.shandov.jdbc1homework.service.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class Main {
 
@@ -15,7 +17,7 @@ public class Main {
     public static final SkillsService skillsService = new SkillsService(new SkillsDAO());
 
     public static void main(String[] args) {
-        //System.out.println("\nЗарплата всех разработчиков отдельного проекта: " + projectsService.salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
+        // System.out.println("\nЗарплата всех разработчиков отдельного проекта: " + projectsService.salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
         //System.out.println("\nСпикок разработчиков отдельного проекта " + developersService.getAllDevelopersByProjectName("Internet_Shop"));
         //System.out.println("\nСпикок Java разработчиков " + developersService.getAllJavaDevelopers("Java"));
         //System.out.println("\nСпикок Middle разработчиков " + developersService.getAllMiddleDevelopers("Middle"));
@@ -23,9 +25,9 @@ public class Main {
 
         //-----Projects
 
-        // projectsService.insertIntoProjects();
-        // projectsService.updateIntoProjects();
-        // projectsService.deleteFromProjects();
+        // projectsService.insertIntoProjects("Doggy", "FleetWord", BigDecimal.valueOf(11000), LocalDate.of(2010,10,10));
+        // projectsService.updateIntoProjects(6l, "DogFood");
+        // projectsService.deleteFromProjects(7l);
 
         // System.out.println("\nСписок всех проектов " + projectsService.getAllProjects());
 

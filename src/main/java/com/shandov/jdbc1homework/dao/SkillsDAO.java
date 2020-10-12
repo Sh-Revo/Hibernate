@@ -1,19 +1,21 @@
 package com.shandov.jdbc1homework.dao;
 
 
+import com.shandov.jdbc1homework.InternalException;
+import com.shandov.jdbc1homework.domain.Companies;
 import com.shandov.jdbc1homework.domain.Skills;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class SkillsDAO extends GenericDAO {
 
     public List<Skills> getAllSkills() {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             Statement statement = connection.createStatement();
-        ) {
-
+             Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select * from skills");
             List<Skills> skillsList = new ArrayList<>();
             while (resultSet.next()) {
@@ -22,57 +24,54 @@ public class SkillsDAO extends GenericDAO {
                 skills.setSkillsName(resultSet.getString("skills_name"));
                 skills.setSkillsLvl(resultSet.getString("skills_lvl"));
                 skillsList.add(skills);
-
             }
             return skillsList;
-
         } catch (SQLException e) {
-            throw new RuntimeException();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 
-    public void insertIntoSkills() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.execute("INSERT into skills(skills_id, skills_name, skills_lvl) VALUES (13, 'VisualBasic', 'Senior')");
-            connection.commit();
+    public void insertIntoSkills(String name, String lvl)  {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("INSERT into skills(skills_name, skills_lvl) VALUES (?, ?)")) {
+            statement.setString(1, name);
+            statement.setString(2, lvl);
+            statement.executeUpdate();
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 
-    public void updateInSkills() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.executeUpdate("UPDATE skills SET skills_name = 'HTML' WHERE skills_id = 13");
-            connection.commit();
+    public void updateInSkills(Long id, String name) {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("UPDATE skills SET skills_name = ? WHERE skills_id = ?")) {
+            statement.setString(1, name);
+            statement.setLong(2, id);
+            statement.executeUpdate();
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 
-    public void deleteFromSkills() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, username, password);
-        Statement statement = connection.createStatement();
-        try {
-            connection.setAutoCommit(false);
-            statement.executeUpdate("DELETE FROM skills WHERE skills_id = 13");
-            connection.commit();
+    public void deleteFromSkills(Long id) {
+        try (Connection connection = DriverManager.getConnection(URL, username, password);
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM skills WHERE skills_id = ?")) {
+            statement.setLong(1, id);
+            statement.executeUpdate();
         } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-            statement.close();
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 }

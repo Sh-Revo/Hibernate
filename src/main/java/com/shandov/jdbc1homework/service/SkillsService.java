@@ -16,27 +16,15 @@ public class SkillsService {
         return skillsDAO.getAllSkills();
     }
 
-    public void insertIntoSkills() {
-        try {
-            skillsDAO.insertIntoSkills();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void insertIntoSkills(String name, String lvl) {
+        skillsDAO.insertIntoSkills(name, lvl);
     }
 
-    public void updateInSkills() {
-        try {
-            skillsDAO.updateInSkills();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void updateInSkills(Long id, String name) {
+        skillsDAO.updateInSkills(id, name);
     }
 
-    public void deleteFromSkills() {
-        try {
-            skillsDAO.deleteFromSkills();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteFromSkills(Long id) {
+        skillsDAO.deleteFromSkills(id);
     }
 }

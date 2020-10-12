@@ -56,9 +56,9 @@ public class Main {
 
         //-----Skills
 
-        // skillsService.insertIntoSkills();
-        // skillsService.updateInSkills();
-        // skillsService.deleteFromSkills();
+        // skillsService.insertIntoSkills("HTML", "Middle");
+        // skillsService.updateInSkills(13l, "Css");
+        // skillsService.deleteFromSkills(13l);
         // System.out.println("\nНазвания всех скиллов " + skillsService.getAllSkills());
     }
 }

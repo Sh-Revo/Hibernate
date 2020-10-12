@@ -83,3 +83,7 @@ create table if not exists customer_projects
     foreign key (project_id) references projects(project_id)
 );
 alter table customer_projects owner to postgres;
+
+alter table "developers" add salary int;
+
+alter table "projects" add cost int;

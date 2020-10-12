@@ -75,3 +75,17 @@ INSERT INTO public.customer_projects(customer_id, project_id) VALUES (1,3);
 INSERT INTO public.customer_projects(customer_id, project_id) VALUES (3,4);
 INSERT INTO public.customer_projects(customer_id, project_id) VALUES (2,5);
 INSERT INTO public.customer_projects(customer_id, project_id) VALUES (3,1);
+
+--update salary into developers
+UPDATE developers SET salary=500 WHERE dev_id=1;
+UPDATE developers SET salary=900 WHERE dev_id=2;
+UPDATE developers SET salary=1000 WHERE dev_id=3;
+UPDATE developers SET salary=3200 WHERE dev_id=4;
+UPDATE developers SET salary=2300 WHERE dev_id=5;
+
+--update cost into projects
+UPDATE projects SET cost=65000 WHERE project_id = 1;
+UPDATE projects SET cost=14000 WHERE project_id = 2;
+UPDATE projects SET cost=11000 WHERE project_id = 3;
+UPDATE projects SET cost=56000 WHERE project_id = 4;
+UPDATE projects SET cost=10200 WHERE project_id = 5;

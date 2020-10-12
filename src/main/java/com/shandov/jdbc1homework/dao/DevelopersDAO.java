@@ -144,6 +144,7 @@ public class DevelopersDAO extends GenericDAO {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
             log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 
@@ -159,6 +160,7 @@ public class DevelopersDAO extends GenericDAO {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
             log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 
@@ -173,6 +175,7 @@ public class DevelopersDAO extends GenericDAO {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
             log.info("Vendor: " + e.getErrorCode());
+            throw new InternalException(e.getMessage());
         }
     }
 }

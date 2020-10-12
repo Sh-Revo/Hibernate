@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         // System.out.println("\nЗарплата всех разработчиков отдельного проекта: " + projectsService.salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
-        //System.out.println("\nСпикок разработчиков отдельного проекта " + developersService.getAllDevelopersByProjectName("Internet_Shop"));
+        // System.out.println("\nСпикок разработчиков отдельного проекта " + developersService.getAllDevelopersByProjectName("Internet_Shop"));
         //System.out.println("\nСпикок Java разработчиков " + developersService.getAllJavaDevelopers("Java"));
         //System.out.println("\nСпикок Middle разработчиков " + developersService.getAllMiddleDevelopers("Middle"));
 

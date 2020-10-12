@@ -30,8 +30,8 @@ public class DevelopersService {
         return developersDAO.getAllDevelopers();
     }
 
-    public void insertIntoDevelopers(String devName, Long devAge, String devGender, BigDecimal devSalary) {
-        developersDAO.insertIntoDevelopers(devName, devAge, devGender, devSalary);
+    public void insertIntoDevelopers(String name, Long age, String gender, BigDecimal salary) {
+        developersDAO.insertIntoDevelopers(name, age, gender, salary);
     }
 
     public void updateIntoDevelopers(Long id, BigDecimal salary) {

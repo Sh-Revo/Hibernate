@@ -20,9 +20,7 @@ public class DevelopersDAO extends GenericDAO {
              PreparedStatement statement = connection.prepareStatement("SELECT pr.project_name, dev.* FROM developers dev " +
                      "join dev_projects dp on dev.dev_id = dp.dev_id " +
                      "join projects pr on dp.project_id = pr.project_id " +
-                     "WHERE pr.project_name = ? " +
-                     "GROUP BY pr.project_name, dev.dev_id " +
-                     "ORDER BY pr.project_name;")) {
+                     "WHERE pr.project_name = ? ;")) {
             statement.setString(1, message);
             ResultSet resultSet = statement.executeQuery();
             List<Developers> developersList = new ArrayList<>();
@@ -128,16 +126,16 @@ public class DevelopersDAO extends GenericDAO {
         }
     }
 
-    public void insertIntoDevelopers(String devName, Long devAge, String devGender, BigDecimal devSalary) {
+    public void insertIntoDevelopers(String name, Long age, String gender, BigDecimal salary) {
 
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              PreparedStatement statement = connection.prepareStatement("INSERT into developers(dev_name, dev_age, dev_gender, salary) VALUES ( ?, ? , ?, ?)")) {
 
-            statement.setString(1, devName);
-            statement.setLong(2, devAge);
-            statement.setString(3, devGender);
-            statement.setBigDecimal(4, devSalary);
+            statement.setString(1, name);
+            statement.setLong(2, age);
+            statement.setString(3, gender);
+            statement.setBigDecimal(4, salary);
             statement.executeUpdate();
 
         } catch (SQLException e) {

@@ -34,7 +34,7 @@ public class SkillsDAO extends GenericDAO {
         }
     }
 
-    public void insertIntoSkills(String name, String lvl)  {
+    public void insertIntoSkills(String name, String lvl) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              PreparedStatement statement = connection.prepareStatement("INSERT into skills(skills_name, skills_lvl) VALUES (?, ?)")) {
             statement.setString(1, name);
@@ -48,11 +48,12 @@ public class SkillsDAO extends GenericDAO {
         }
     }
 
-    public void updateInSkills(Long id, String name) {
+    public void updateInSkills(Long id, String name, String lvl) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("UPDATE skills SET skills_name = ? WHERE skills_id = ?")) {
+             PreparedStatement statement = connection.prepareStatement("UPDATE skills SET skills_name = ?, skills_lvl = ? WHERE skills_id = ?")) {
             statement.setString(1, name);
-            statement.setLong(2, id);
+            statement.setString(2, lvl);
+            statement.setLong(3, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());

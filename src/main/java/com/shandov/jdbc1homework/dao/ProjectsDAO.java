@@ -109,11 +109,14 @@ public class ProjectsDAO extends GenericDAO {
         }
     }
 
-    public void updateIntoProjects(Long id, String description) {
+    public void updateIntoProjects(Long id, String name, String description, BigDecimal cost, LocalDate start) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("UPDATE projects SET project_description = ? WHERE project_id = ?");) {
-            statement.setString(1, description);
-            statement.setLong(2, id);
+             PreparedStatement statement = connection.prepareStatement("UPDATE projects SET project_name = ?, project_description = ? , cost = ?, project_start = ?  WHERE project_id = ?");) {
+            statement.setString(1, name);
+            statement.setString(2, description);
+            statement.setBigDecimal(3, cost);
+            statement.setDate(4, Date.valueOf(start));
+            statement.setLong(5, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());

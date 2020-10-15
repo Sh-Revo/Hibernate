@@ -34,8 +34,8 @@ public class DevelopersService {
         developersDAO.insertIntoDevelopers(name, age, gender, salary);
     }
 
-    public void updateIntoDevelopers(Long id, BigDecimal salary) {
-        developersDAO.updateIntoDevelopers(id,salary);
+    public void updateIntoDevelopers(Long id, String name, Long age, String gender, BigDecimal salary) {
+        developersDAO.updateIntoDevelopers(id, name, age, gender, salary);
     }
 
     public void deleteFromDevelopers(Long id) {

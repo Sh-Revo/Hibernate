@@ -50,14 +50,14 @@ public class CompaiesDAO extends GenericDAO {
         }
     }
 
-    public void updateInCompanies(Long id, String name) {
+    public void updateInCompanies(Long id, String name, String location) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("UPDATE companies SET company_name = ? WHERE company_id = ?");) {
+             PreparedStatement statement = connection.prepareStatement("UPDATE companies SET company_name = ?, company_location = ? WHERE company_id = ?");) {
 
             statement.setString(1, name);
-            statement.setLong(2, id);
+            statement.setString(2, location);
+            statement.setLong(3, id);
             statement.executeUpdate();
-            connection.commit();
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());

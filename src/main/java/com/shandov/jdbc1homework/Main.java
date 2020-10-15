@@ -26,7 +26,7 @@ public class Main {
         //-----Projects
 
         // projectsService.insertIntoProjects("Doggy", "FleetWord", BigDecimal.valueOf(11000), LocalDate.of(2010,10,10));
-        // projectsService.updateIntoProjects(6l, "DogFood");
+        // projectsService.updateIntoProjects(6l, "DogFood", "Food for Dog", BigDecimal.valueOf(9000), LocalDate.of(2010,10,10));
         // projectsService.deleteFromProjects(7l);
 
         // System.out.println("\nСписок всех проектов " + projectsService.getAllProjects());
@@ -35,7 +35,7 @@ public class Main {
         //-----Developers
 
         // developersService.insertIntoDevelopers("Ivan", 24l, "Male", BigDecimal.valueOf(11000));
-        // developersService.updateIntoDevelopers(15l, BigDecimal.valueOf(10000));
+        // developersService.updateIntoDevelopers(15l, "Oleg", 22l, "Male", BigDecimal.valueOf(10000));
         // developersService.deleteFromDevelopers(14l);
         // System.out.println("\nСписок всех разработчиков " + developersService.getAllDevelopers());
 
@@ -43,7 +43,7 @@ public class Main {
         //-----Companies
 
         // companiesService.insertIntoCompanies("Volodya", "Paris");
-        // companiesService.updateInCompanies(8l, "Ubisoft");
+        // companiesService.updateInCompanies(1l, "Ubisoft", "London");
         // companiesService.deleteFromCompanies(8l);
         // System.out.println("\nСписок всех компаний " + companiesService.getAllCompanies());
 
@@ -51,7 +51,7 @@ public class Main {
         //-----Customers
 
         // customersService.insertIntoCustomers("Vladimir", "Belov");
-        // customersService.updateInCustomers(4l, "Belyaev");
+        // customersService.updateInCustomers(2l, "Alex", "Belyaev");
         // customersService.deleteFromCustomers(4l);
         // System.out.println("\nСписок всех клиентов " + customersService.getAllCustomers());
 
@@ -59,7 +59,7 @@ public class Main {
         //-----Skills
 
         // skillsService.insertIntoSkills("HTML", "Middle");
-        // skillsService.updateInSkills(13l, "Css");
+        // skillsService.updateInSkills(13l, "Css", "Junior");
         // skillsService.deleteFromSkills(13l);
         // System.out.println("\nНазвания всех скиллов " + skillsService.getAllSkills());
     }

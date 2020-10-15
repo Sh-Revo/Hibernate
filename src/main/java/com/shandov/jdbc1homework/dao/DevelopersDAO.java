@@ -146,12 +146,15 @@ public class DevelopersDAO extends GenericDAO {
         }
     }
 
-    public void updateIntoDevelopers(Long id, BigDecimal salary) {
+    public void updateIntoDevelopers(Long id, String name, Long age, String gender, BigDecimal salary) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("UPDATE developers SET salary = ? WHERE dev_id = ?")) {
+             PreparedStatement statement = connection.prepareStatement("UPDATE developers SET dev_name = ?, dev_age = ?, dev_gender = ?, salary = ? WHERE dev_id = ?")) {
 
-            statement.setBigDecimal(1, salary);
-            statement.setLong(2, id);
+            statement.setString(1, name);
+            statement.setLong(2, age);
+            statement.setString(3, gender);
+            statement.setBigDecimal(4, salary);
+            statement.setLong(5, id);
             statement.executeUpdate();
 
         } catch (SQLException e) {

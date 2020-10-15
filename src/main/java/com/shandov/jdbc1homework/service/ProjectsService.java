@@ -32,8 +32,8 @@ public class ProjectsService {
         projectsDAO.insertIntoProjects(name, description, cost, start);
     }
 
-    public void updateIntoProjects(Long id, String description) {
-        projectsDAO.updateIntoProjects(id, description);
+    public void updateIntoProjects(Long id, String name, String description, BigDecimal cost, LocalDate start) {
+        projectsDAO.updateIntoProjects(id, name, description, cost, start);
     }
 
     public void deleteFromProjects(Long id) {

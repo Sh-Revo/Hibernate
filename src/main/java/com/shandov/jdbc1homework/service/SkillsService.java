@@ -20,8 +20,8 @@ public class SkillsService {
         skillsDAO.insertIntoSkills(name, lvl);
     }
 
-    public void updateInSkills(Long id, String name) {
-        skillsDAO.updateInSkills(id, name);
+    public void updateInSkills(Long id, String name, String lvl) {
+        skillsDAO.updateInSkills(id, name, lvl);
     }
 
     public void deleteFromSkills(Long id) {

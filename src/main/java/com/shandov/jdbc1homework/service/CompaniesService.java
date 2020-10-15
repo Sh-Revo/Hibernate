@@ -21,8 +21,8 @@ public class CompaniesService {
         compaiesDAO.insertIntoCompanies(name, location);
     }
 
-    public void updateInCompanies(Long id, String name) {
-        compaiesDAO.updateInCompanies(id, name);
+    public void updateInCompanies(Long id, String name, String location) {
+        compaiesDAO.updateInCompanies(id, name, location);
     }
 
     public void deleteFromCompanies(Long id) {

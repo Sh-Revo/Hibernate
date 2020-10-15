@@ -49,12 +49,13 @@ public class CustomersDAO extends GenericDAO {
         }
     }
 
-    public void updateInCustomers(Long id, String secondName)  {
+    public void updateInCustomers(Long id, String name, String secondName)  {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("UPDATE customers SET customer_second_name = ? WHERE customer_id = ?")) {
+             PreparedStatement statement = connection.prepareStatement("UPDATE customers SET customer_name = ?, customer_second_name = ? WHERE customer_id = ?")) {
 
-            statement.setString(1, secondName);
-            statement.setLong(2, id);
+            statement.setString(1, name);
+            statement.setString(2, secondName);
+            statement.setLong(3, id);
             statement.executeUpdate();
 
         } catch (SQLException e) {

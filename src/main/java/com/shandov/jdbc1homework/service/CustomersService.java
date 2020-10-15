@@ -20,8 +20,8 @@ public class CustomersService {
         customersDAO.insertIntoCustomers(name, secondName);
     }
 
-    public void updateInCustomers(Long id, String secondName) {
-        customersDAO.updateInCustomers(id, secondName);
+    public void updateInCustomers(Long id, String name, String secondName) {
+        customersDAO.updateInCustomers(id, name, secondName);
     }
 
     public void deleteFromCustomers(Long id) {

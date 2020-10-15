@@ -14,14 +14,14 @@ import java.util.List;
 public class DevelopersDAO extends GenericDAO {
 
 
-    public List<Developers> getAllDevelopersByProjectName(String message) {
+    public List<Developers> getAllDevelopersByProjectName(String name) {
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("SELECT pr.project_name, dev.* FROM developers dev " +
+             PreparedStatement statement = connection.prepareStatement("SELECT dev.* FROM developers dev " +
                      "join dev_projects dp on dev.dev_id = dp.dev_id " +
                      "join projects pr on dp.project_id = pr.project_id " +
                      "WHERE pr.project_name = ? ;")) {
-            statement.setString(1, message);
+            statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
             List<Developers> developersList = new ArrayList<>();
             while (resultSet.next()) {
@@ -32,10 +32,6 @@ public class DevelopersDAO extends GenericDAO {
                 developers.setDevGender(resultSet.getString("dev_gender"));
                 developers.setDevSalary(resultSet.getBigDecimal("salary"));
 
-//                developersList.stream().map(developers1 -> developers).filter(developers1 -> {
-//                    System.out.println("\nNew " + developers1);
-//                    return Boolean.parseBoolean(null);
-//                }).collect(Collectors.toList());
                 developersList.add(developers);
             }
             return developersList;
@@ -48,14 +44,14 @@ public class DevelopersDAO extends GenericDAO {
 
     }
 
-    public List<Developers> getAllJavaDevelopers(String message) {
+    public List<Developers> getAllDevelopersBySkillsName(String name) {
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              PreparedStatement statement = connection.prepareStatement("select dev.* from developers dev " +
                      "join dev_skills ds on dev.dev_id = ds.dev_id " +
                      "join skills s on dev.dev_id = s.skills_id " +
                      "where s.skills_name = ?;")) {
-            statement.setString(1, message);
+            statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
             List<Developers> developersList = new ArrayList<>();
             while (resultSet.next()) {
@@ -77,14 +73,14 @@ public class DevelopersDAO extends GenericDAO {
 
     }
 
-    public List<Developers> getAllMiddleDevelopers(String message) {
+    public List<Developers> getAllDevelopersBySkillsLvl(String lvl) {
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              PreparedStatement statement = connection.prepareStatement("select dev.* from developers dev " +
                      "join dev_skills ds on dev.dev_id = ds.dev_id " +
                      "join skills s on dev.dev_id = s.skills_id " +
                      "where s.skills_lvl = ?;")) {
-            statement.setString(1, message);
+            statement.setString(1, lvl);
             ResultSet resultSet = statement.executeQuery();
             List<Developers> developersList = new ArrayList<>();
             while (resultSet.next()) {
@@ -98,6 +94,9 @@ public class DevelopersDAO extends GenericDAO {
             }
             return developersList;
         } catch (SQLException e) {
+            log.info("SQLState: " + e.getSQLState());
+            log.info("Message: " + e.getMessage());
+            log.info("Vendor: " + e.getErrorCode());
             throw new RuntimeException(e);
         }
 

@@ -19,24 +19,23 @@ public class ProjectsDAO extends GenericDAO {
     public BigDecimal salaryAllDevelopersByProjectName(String message) {
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("select pr.project_name, sum(salary) from developers dev " +
+             PreparedStatement statement = connection.prepareStatement("select sum(salary) from developers dev " +
                      "join dev_projects dp on dev.dev_id = dp.dev_id " +
                      "join projects pr on dp.project_id = pr.project_id " +
-                     "where pr.project_name = ? " +
-                     "group by pr.project_name;")) {
+                     "where pr.project_name = ?; ")) {
             statement.setString(1, message);
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                return resultSet.getBigDecimal(2);
+            BigDecimal sum = null;
+            if (resultSet.next()) {
+                sum = resultSet.getBigDecimal(2);
             }
-
+            return sum;
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
             log.info("Vendor: " + e.getErrorCode());
             throw new InternalException(e.getMessage());
         }
-        return null;
     }
 
 

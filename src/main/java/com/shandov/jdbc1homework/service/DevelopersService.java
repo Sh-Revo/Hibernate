@@ -6,7 +6,6 @@ import com.shandov.jdbc1homework.domain.Developers;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -14,16 +13,16 @@ public class DevelopersService {
 
     private final DevelopersDAO developersDAO;
 
-    public List<Developers> getAllDevelopersByProjectName(String message) {
-        return developersDAO.getAllDevelopersByProjectName(message);
+    public List<Developers> getAllDevelopersByProjectName(String name) {
+        return developersDAO.getAllDevelopersByProjectName(name);
     }
 
-    public List<Developers> getAllJavaDevelopers(String message) {
-        return developersDAO.getAllJavaDevelopers(message);
+    public List<Developers> getAllDevelopersBySkillsName(String name) {
+        return developersDAO.getAllDevelopersBySkillsName(name);
     }
 
-    public List<Developers> getAllMiddleDevelopers(String message) {
-        return developersDAO.getAllMiddleDevelopers(message);
+    public List<Developers> getAllDevelopersBySkillsLvl(String lvl) {
+        return developersDAO.getAllDevelopersBySkillsLvl(lvl);
     }
 
     public List<Developers> getAllDevelopers() {

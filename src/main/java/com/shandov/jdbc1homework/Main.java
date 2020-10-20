@@ -5,16 +5,14 @@ import com.shandov.jdbc1homework.dao.*;
 import com.shandov.jdbc1homework.service.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Date;
 
 public class Main {
 
-    public static final ProjectsService projectsService = new ProjectsService(new ProjectsDAO());
-    public static final DevelopersService developersService = new DevelopersService(new DevelopersDAO());
-    public static final CompaniesService companiesService = new CompaniesService(new CompaiesDAO());
-    public static final CustomersService customersService = new CustomersService(new CustomersDAO());
-    public static final SkillsService skillsService = new SkillsService(new SkillsDAO());
+    public static final ProjectService projectsService = new ProjectService(new ProjectDAO());
+    public static final DeveloperService developersService = new DeveloperService(new DeveloperDAO());
+    public static final CompanyService companiesService = new CompanyService(new CompanyDAO());
+    public static final CustomerService customersService = new CustomerService(new CustomerDAO());
+    public static final SkillService skillsService = new SkillService(new SkillDAO());
 
     public static void main(String[] args) {
         // System.out.println("\nЗарплата всех разработчиков отдельного проекта: " + projectsService.salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
@@ -23,7 +21,7 @@ public class Main {
         //System.out.println("\nСпикок Middle разработчиков " + developersService.getAllDevelopersBySkillsLvl("Middle"));
 
 
-        //-----Projects
+        //-----Project
 
         // projectsService.insertIntoProjects("Doggy", "FleetWord", BigDecimal.valueOf(11000), LocalDate.of(2010,10,10));
         // projectsService.updateIntoProjects(6l, "DogFood", "Food for Dog", BigDecimal.valueOf(9000), LocalDate.of(2010,10,10));
@@ -32,15 +30,15 @@ public class Main {
         // System.out.println("\nСписок всех проектов " + projectsService.getAllProjects());
 
 
-        //-----Developers
+        //-----Developer
 
-        // developersService.insertIntoDevelopers("Ivan", 24l, "Male", BigDecimal.valueOf(11000));
+        // developersService.insertIntoDevelopers("Andrew", 29l, "Male", BigDecimal.valueOf(8500));
         // developersService.updateIntoDevelopers(15l, "Oleg", 22l, "Male", BigDecimal.valueOf(10000));
         // developersService.deleteFromDevelopers(14l);
         // System.out.println("\nСписок всех разработчиков " + developersService.getAllDevelopers());
 
 
-        //-----Companies
+        //-----Company
 
         // companiesService.insertIntoCompanies("Volodya", "Paris");
         // companiesService.updateInCompanies(1l, "Ubisoft", "London");
@@ -48,7 +46,7 @@ public class Main {
         // System.out.println("\nСписок всех компаний " + companiesService.getAllCompanies());
 
 
-        //-----Customers
+        //-----Customer
 
         // customersService.insertIntoCustomers("Vladimir", "Belov");
         // customersService.updateInCustomers(2l, "Alex", "Belyaev");
@@ -56,7 +54,7 @@ public class Main {
         // System.out.println("\nСписок всех клиентов " + customersService.getAllCustomers());
 
 
-        //-----Skills
+        //-----Skill
 
         // skillsService.insertIntoSkills("HTML", "Middle");
         // skillsService.updateInSkills(13l, "Css", "Junior");

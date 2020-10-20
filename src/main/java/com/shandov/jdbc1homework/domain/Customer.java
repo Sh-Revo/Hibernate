@@ -3,7 +3,7 @@ package com.shandov.jdbc1homework.domain;
 import lombok.Data;
 
 @Data
-public class Customers {
+public class Customer {
 
     private Long customersId;
     private String customersName;
@@ -11,7 +11,7 @@ public class Customers {
 
     @Override
     public String toString() {
-        return "Customers{" +
+        return "Customer{" +
                 "customersId=" + customersId +
                 ", customersName='" + customersName + '\'' +
                 ", customersSecondName='" + customersSecondName + '\'' +

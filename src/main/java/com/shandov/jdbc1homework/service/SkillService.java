@@ -1,18 +1,17 @@
 package com.shandov.jdbc1homework.service;
 
-import com.shandov.jdbc1homework.dao.SkillsDAO;
-import com.shandov.jdbc1homework.domain.Skills;
+import com.shandov.jdbc1homework.dao.SkillDAO;
+import com.shandov.jdbc1homework.domain.Skill;
 import lombok.RequiredArgsConstructor;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class SkillsService {
+public class SkillService {
 
-    private final SkillsDAO skillsDAO;
+    private final SkillDAO skillsDAO;
 
-    public List<Skills> getAllSkills() {
+    public List<Skill> getAllSkills() {
         return skillsDAO.getAllSkills();
     }
 

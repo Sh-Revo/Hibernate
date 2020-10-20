@@ -1,7 +1,7 @@
 package com.shandov.jdbc1homework.dao;
 
 import com.shandov.jdbc1homework.InternalException;
-import com.shandov.jdbc1homework.domain.Developers;
+import com.shandov.jdbc1homework.domain.Developer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
@@ -11,10 +11,10 @@ import java.util.List;
 
 
 @Slf4j
-public class DevelopersDAO extends GenericDAO {
+public class DeveloperDAO extends GenericDAO {
 
 
-    public List<Developers> getAllDevelopersByProjectName(String name) {
+    public List<Developer> getAllDevelopersByProjectName(String name) {
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              PreparedStatement statement = connection.prepareStatement("SELECT dev.* FROM developers dev " +
@@ -23,16 +23,16 @@ public class DevelopersDAO extends GenericDAO {
                      "WHERE pr.project_name = ? ;")) {
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
-            List<Developers> developersList = new ArrayList<>();
+            List<Developer> developersList = new ArrayList<>();
             while (resultSet.next()) {
-                Developers developers = new Developers();
-                developers.setDevId(resultSet.getLong("dev_id"));
-                developers.setDevName(resultSet.getString("dev_name"));
-                developers.setDevAge(resultSet.getLong("dev_age"));
-                developers.setDevGender(resultSet.getString("dev_gender"));
-                developers.setDevSalary(resultSet.getBigDecimal("salary"));
+                Developer developer = new Developer();
+                developer.setDevId(resultSet.getLong("dev_id"));
+                developer.setDevName(resultSet.getString("dev_name"));
+                developer.setDevAge(resultSet.getLong("dev_age"));
+                developer.setDevGender(resultSet.getString("dev_gender"));
+                developer.setDevSalary(resultSet.getBigDecimal("salary"));
 
-                developersList.add(developers);
+                developersList.add(developer);
             }
             return developersList;
         } catch (SQLException e) {
@@ -44,7 +44,7 @@ public class DevelopersDAO extends GenericDAO {
 
     }
 
-    public List<Developers> getAllDevelopersBySkillsName(String name) {
+    public List<Developer> getAllDevelopersBySkillsName(String name) {
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              PreparedStatement statement = connection.prepareStatement("select dev.* from developers dev " +
@@ -53,15 +53,15 @@ public class DevelopersDAO extends GenericDAO {
                      "where s.skills_name = ?;")) {
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
-            List<Developers> developersList = new ArrayList<>();
+            List<Developer> developersList = new ArrayList<>();
             while (resultSet.next()) {
-                Developers developers = new Developers();
-                developers.setDevId(resultSet.getLong("dev_id"));
-                developers.setDevName(resultSet.getString("dev_name"));
-                developers.setDevAge(resultSet.getLong("dev_age"));
-                developers.setDevGender(resultSet.getString("dev_gender"));
-                developers.setDevSalary(resultSet.getBigDecimal("salary"));
-                developersList.add(developers);
+                Developer developer = new Developer();
+                developer.setDevId(resultSet.getLong("dev_id"));
+                developer.setDevName(resultSet.getString("dev_name"));
+                developer.setDevAge(resultSet.getLong("dev_age"));
+                developer.setDevGender(resultSet.getString("dev_gender"));
+                developer.setDevSalary(resultSet.getBigDecimal("salary"));
+                developersList.add(developer);
             }
             return developersList;
         } catch (SQLException e) {
@@ -73,7 +73,7 @@ public class DevelopersDAO extends GenericDAO {
 
     }
 
-    public List<Developers> getAllDevelopersBySkillsLvl(String lvl) {
+    public List<Developer> getAllDevelopersBySkillsLvl(String lvl) {
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              PreparedStatement statement = connection.prepareStatement("select dev.* from developers dev " +
@@ -82,15 +82,15 @@ public class DevelopersDAO extends GenericDAO {
                      "where s.skills_lvl = ?;")) {
             statement.setString(1, lvl);
             ResultSet resultSet = statement.executeQuery();
-            List<Developers> developersList = new ArrayList<>();
+            List<Developer> developersList = new ArrayList<>();
             while (resultSet.next()) {
-                Developers developers = new Developers();
-                developers.setDevId(resultSet.getLong("dev_id"));
-                developers.setDevName(resultSet.getString("dev_name"));
-                developers.setDevAge(resultSet.getLong("dev_age"));
-                developers.setDevGender(resultSet.getString("dev_gender"));
-                developers.setDevSalary(resultSet.getBigDecimal("salary"));
-                developersList.add(developers);
+                Developer developer = new Developer();
+                developer.setDevId(resultSet.getLong("dev_id"));
+                developer.setDevName(resultSet.getString("dev_name"));
+                developer.setDevAge(resultSet.getLong("dev_age"));
+                developer.setDevGender(resultSet.getString("dev_gender"));
+                developer.setDevSalary(resultSet.getBigDecimal("salary"));
+                developersList.add(developer);
             }
             return developersList;
         } catch (SQLException e) {
@@ -102,19 +102,19 @@ public class DevelopersDAO extends GenericDAO {
 
     }
 
-    public List<Developers> getAllDevelopers() {
+    public List<Developer> getAllDevelopers() {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select * from developers");
-            List<Developers> developersList = new ArrayList<>();
+            List<Developer> developersList = new ArrayList<>();
             while (resultSet.next()) {
-                Developers developers = new Developers();
-                developers.setDevId(resultSet.getLong("dev_id"));
-                developers.setDevName(resultSet.getString("dev_name"));
-                developers.setDevAge(resultSet.getLong("dev_age"));
-                developers.setDevGender(resultSet.getString("dev_gender"));
-                developers.setDevSalary(resultSet.getBigDecimal("salary"));
-                developersList.add(developers);
+                Developer developer = new Developer();
+                developer.setDevId(resultSet.getLong("dev_id"));
+                developer.setDevName(resultSet.getString("dev_name"));
+                developer.setDevAge(resultSet.getLong("dev_age"));
+                developer.setDevGender(resultSet.getString("dev_gender"));
+                developer.setDevSalary(resultSet.getBigDecimal("salary"));
+                developersList.add(developer);
             }
             return developersList;
         } catch (SQLException e) {

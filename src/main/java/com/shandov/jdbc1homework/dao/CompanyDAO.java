@@ -1,9 +1,7 @@
 package com.shandov.jdbc1homework.dao;
 
-
 import com.shandov.jdbc1homework.InternalException;
-import com.shandov.jdbc1homework.domain.Companies;
-import com.shandov.jdbc1homework.domain.Skills;
+import com.shandov.jdbc1homework.domain.Company;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
@@ -11,21 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-public class SkillsDAO extends GenericDAO {
+public class CompanyDAO extends GenericDAO {
 
-    public List<Skills> getAllSkills() {
+    public List<Company> getAllCompanies() {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from skills");
-            List<Skills> skillsList = new ArrayList<>();
+            ResultSet resultSet = statement.executeQuery("select * from companies");
+            List<Company> companiesList = new ArrayList<>();
             while (resultSet.next()) {
-                Skills skills = new Skills();
-                skills.setSkillsId(resultSet.getLong("skills_id"));
-                skills.setSkillsName(resultSet.getString("skills_name"));
-                skills.setSkillsLvl(resultSet.getString("skills_lvl"));
-                skillsList.add(skills);
+                Company companies = new Company();
+                companies.setCompanyId(resultSet.getLong("company_id"));
+                companies.setCompanyName(resultSet.getString("company_name"));
+                companies.setCompanyLocation(resultSet.getString("company_location"));
+                companiesList.add(companies);
             }
-            return skillsList;
+            return companiesList;
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
@@ -34,12 +32,15 @@ public class SkillsDAO extends GenericDAO {
         }
     }
 
-    public void insertIntoSkills(String name, String lvl) {
+
+    public void insertIntoCompanies(String name, String location) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("INSERT into skills(skills_name, skills_lvl) VALUES (?, ?)")) {
+             PreparedStatement statement = connection.prepareStatement("INSERT into companies(company_name, company_location) VALUES (?,?)")) {
+
             statement.setString(1, name);
-            statement.setString(2, lvl);
+            statement.setString(2, location);
             statement.executeUpdate();
+
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
@@ -48,11 +49,12 @@ public class SkillsDAO extends GenericDAO {
         }
     }
 
-    public void updateInSkills(Long id, String name, String lvl) {
+    public void updateInCompanies(Long id, String name, String location) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("UPDATE skills SET skills_name = ?, skills_lvl = ? WHERE skills_id = ?")) {
+             PreparedStatement statement = connection.prepareStatement("UPDATE companies SET company_name = ?, company_location = ? WHERE company_id = ?");) {
+
             statement.setString(1, name);
-            statement.setString(2, lvl);
+            statement.setString(2, location);
             statement.setLong(3, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -63,11 +65,13 @@ public class SkillsDAO extends GenericDAO {
         }
     }
 
-    public void deleteFromSkills(Long id) {
+    public void deleteFromCompanies(Long id) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("DELETE FROM skills WHERE skills_id = ?")) {
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM companies WHERE company_id = ?");) {
+
             statement.setLong(1, id);
             statement.executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
@@ -75,4 +79,6 @@ public class SkillsDAO extends GenericDAO {
             throw new InternalException(e.getMessage());
         }
     }
+
+
 }

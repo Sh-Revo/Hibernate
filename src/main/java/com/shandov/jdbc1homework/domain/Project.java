@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class Projects {
+public class Project {
 
     private Long projectId;
     private String projectName;
@@ -17,7 +17,7 @@ public class Projects {
 
     @Override
     public String toString() {
-        return "Projects{" +
+        return "Project{" +
                 "projectId=" + projectId +
                 ", projectName='" + projectName + '\'' +
                 ", projectDescription='" + projectDescription + '\'' +

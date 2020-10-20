@@ -1,30 +1,30 @@
 package com.shandov.jdbc1homework.dao;
 
+
 import com.shandov.jdbc1homework.InternalException;
-import com.shandov.jdbc1homework.domain.Companies;
-import com.shandov.jdbc1homework.domain.Customers;
+import com.shandov.jdbc1homework.domain.Skill;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Slf4j
-public class CustomersDAO extends GenericDAO {
+public class SkillDAO extends GenericDAO {
 
-
-    public List<Customers> getAllCustomers() {
+    public List<Skill> getAllSkills() {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from customers");
-            List<Customers> customersList = new ArrayList<>();
+            ResultSet resultSet = statement.executeQuery("select * from skills");
+            List<Skill> skillsList = new ArrayList<>();
             while (resultSet.next()) {
-                Customers customers = new Customers();
-                customers.setCustomersId(resultSet.getLong("customer_id"));
-                customers.setCustomersName(resultSet.getString("customer_name"));
-                customers.setCustomersSecondName(resultSet.getString("customer_second_name"));
-                customersList.add(customers);
+                Skill skill = new Skill();
+                skill.setSkillsId(resultSet.getLong("skills_id"));
+                skill.setSkillsName(resultSet.getString("skills_name"));
+                skill.setSkillLvl(resultSet.getString("skills_lvl"));
+                skillsList.add(skill);
             }
-            return customersList;
+            return skillsList;
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
@@ -33,14 +33,12 @@ public class CustomersDAO extends GenericDAO {
         }
     }
 
-    public void insertIntoCustomers(String name, String secondName)  {
+    public void insertIntoSkills(String name, String lvl) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("INSERT into customers(customer_name, customer_second_name) VALUES ( ?, ?)")) {
-
+             PreparedStatement statement = connection.prepareStatement("INSERT into skills(skills_name, skills_lvl) VALUES (?, ?)")) {
             statement.setString(1, name);
-            statement.setString(2, secondName);
+            statement.setString(2, lvl);
             statement.executeUpdate();
-
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
@@ -49,15 +47,13 @@ public class CustomersDAO extends GenericDAO {
         }
     }
 
-    public void updateInCustomers(Long id, String name, String secondName)  {
+    public void updateInSkills(Long id, String name, String lvl) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("UPDATE customers SET customer_name = ?, customer_second_name = ? WHERE customer_id = ?")) {
-
+             PreparedStatement statement = connection.prepareStatement("UPDATE skills SET skills_name = ?, skills_lvl = ? WHERE skills_id = ?")) {
             statement.setString(1, name);
-            statement.setString(2, secondName);
+            statement.setString(2, lvl);
             statement.setLong(3, id);
             statement.executeUpdate();
-
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());
@@ -66,13 +62,11 @@ public class CustomersDAO extends GenericDAO {
         }
     }
 
-    public void deleteFromCustomers(Long id)  {
+    public void deleteFromSkills(Long id) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
-             PreparedStatement statement = connection.prepareStatement("DELETE FROM customers WHERE customer_id = ?")) {
-
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM skills WHERE skills_id = ?")) {
             statement.setLong(1, id);
             statement.executeUpdate();
-
         } catch (SQLException e) {
             log.info("SQLState: " + e.getSQLState());
             log.info("Message: " + e.getMessage());

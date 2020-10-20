@@ -2,18 +2,17 @@ package com.shandov.jdbc1homework.dao;
 
 
 import com.shandov.jdbc1homework.InternalException;
-import com.shandov.jdbc1homework.domain.Projects;
+import com.shandov.jdbc1homework.domain.Project;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 @Slf4j
-public class ProjectsDAO extends GenericDAO {
+public class ProjectDAO extends GenericDAO {
 
 
     public BigDecimal salaryAllDevelopersByProjectName(String message) {
@@ -39,7 +38,7 @@ public class ProjectsDAO extends GenericDAO {
     }
 
 
-    public List<Projects> getAllProjectsByCountDevelopers() {
+    public List<Project> getAllProjectsByCountDevelopers() {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              Statement statement = connection.createStatement()) {
 
@@ -47,12 +46,12 @@ public class ProjectsDAO extends GenericDAO {
                     "JOIN dev_projects dp on pr.project_id = dp.project_id \n" +
                     "JOIN developers d on dp.dev_id = d.dev_id  \n" +
                     "GROUP BY pr.project_name, pr.project_start;");
-            List<Projects> projectsList = new ArrayList<>();
+            List<Project> projectsList = new ArrayList<>();
             while (resultSet.next()) {
-                Projects projects = new Projects();
-                projects.setProjectName(resultSet.getString("project_name"));
-                projects.setProjectStart(resultSet.getDate("project_start"));
-                projectsList.add(projects);
+                Project project = new Project();
+                project.setProjectName(resultSet.getString("project_name"));
+                project.setProjectStart(resultSet.getDate("project_start"));
+                projectsList.add(project);
             }
             return projectsList;
         } catch (SQLException e) {
@@ -65,20 +64,20 @@ public class ProjectsDAO extends GenericDAO {
 
     }
 
-    public List<Projects> getAllProjects() {
+    public List<Project> getAllProjects() {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              Statement statement = connection.createStatement()) {
 
             ResultSet resultSet = statement.executeQuery("SELECT * FROM projects");
-            List<Projects> projectsList = new ArrayList<>();
+            List<Project> projectsList = new ArrayList<>();
             while (resultSet.next()) {
-                Projects projects = new Projects();
-                projects.setProjectId(resultSet.getLong("project_id"));
-                projects.setProjectName(resultSet.getString("project_name"));
-                projects.setProjectDescription(resultSet.getString("project_description"));
-                projects.setProjectCost(resultSet.getBigDecimal("cost"));
-                projects.setProjectStart(resultSet.getDate("project_start"));
-                projectsList.add(projects);
+                Project project = new Project();
+                project.setProjectId(resultSet.getLong("project_id"));
+                project.setProjectName(resultSet.getString("project_name"));
+                project.setProjectDescription(resultSet.getString("project_description"));
+                project.setProjectCost(resultSet.getBigDecimal("cost"));
+                project.setProjectStart(resultSet.getDate("project_start"));
+                projectsList.add(project);
             }
             return projectsList;
 

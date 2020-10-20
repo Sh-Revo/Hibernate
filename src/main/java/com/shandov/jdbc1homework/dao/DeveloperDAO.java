@@ -26,11 +26,11 @@ public class DeveloperDAO extends GenericDAO {
             List<Developer> developersList = new ArrayList<>();
             while (resultSet.next()) {
                 Developer developer = new Developer();
-                developer.setDevId(resultSet.getLong("dev_id"));
-                developer.setDevName(resultSet.getString("dev_name"));
-                developer.setDevAge(resultSet.getLong("dev_age"));
-                developer.setDevGender(resultSet.getString("dev_gender"));
-                developer.setDevSalary(resultSet.getBigDecimal("salary"));
+                developer.setId(resultSet.getLong("dev_id"));
+                developer.setName(resultSet.getString("dev_name"));
+                developer.setAge(resultSet.getInt("dev_age"));
+                developer.setGender(resultSet.getString("dev_gender"));
+                developer.setSalary(resultSet.getBigDecimal("salary"));
 
                 developersList.add(developer);
             }
@@ -56,11 +56,11 @@ public class DeveloperDAO extends GenericDAO {
             List<Developer> developersList = new ArrayList<>();
             while (resultSet.next()) {
                 Developer developer = new Developer();
-                developer.setDevId(resultSet.getLong("dev_id"));
-                developer.setDevName(resultSet.getString("dev_name"));
-                developer.setDevAge(resultSet.getLong("dev_age"));
-                developer.setDevGender(resultSet.getString("dev_gender"));
-                developer.setDevSalary(resultSet.getBigDecimal("salary"));
+                developer.setId(resultSet.getLong("dev_id"));
+                developer.setName(resultSet.getString("dev_name"));
+                developer.setAge(resultSet.getInt("dev_age"));
+                developer.setGender(resultSet.getString("dev_gender"));
+                developer.setSalary(resultSet.getBigDecimal("salary"));
                 developersList.add(developer);
             }
             return developersList;
@@ -85,11 +85,11 @@ public class DeveloperDAO extends GenericDAO {
             List<Developer> developersList = new ArrayList<>();
             while (resultSet.next()) {
                 Developer developer = new Developer();
-                developer.setDevId(resultSet.getLong("dev_id"));
-                developer.setDevName(resultSet.getString("dev_name"));
-                developer.setDevAge(resultSet.getLong("dev_age"));
-                developer.setDevGender(resultSet.getString("dev_gender"));
-                developer.setDevSalary(resultSet.getBigDecimal("salary"));
+                developer.setId(resultSet.getLong("dev_id"));
+                developer.setName(resultSet.getString("dev_name"));
+                developer.setAge(resultSet.getInt("dev_age"));
+                developer.setGender(resultSet.getString("dev_gender"));
+                developer.setSalary(resultSet.getBigDecimal("salary"));
                 developersList.add(developer);
             }
             return developersList;
@@ -109,11 +109,11 @@ public class DeveloperDAO extends GenericDAO {
             List<Developer> developersList = new ArrayList<>();
             while (resultSet.next()) {
                 Developer developer = new Developer();
-                developer.setDevId(resultSet.getLong("dev_id"));
-                developer.setDevName(resultSet.getString("dev_name"));
-                developer.setDevAge(resultSet.getLong("dev_age"));
-                developer.setDevGender(resultSet.getString("dev_gender"));
-                developer.setDevSalary(resultSet.getBigDecimal("salary"));
+                developer.setId(resultSet.getLong("dev_id"));
+                developer.setName(resultSet.getString("dev_name"));
+                developer.setAge(resultSet.getInt("dev_age"));
+                developer.setGender(resultSet.getString("dev_gender"));
+                developer.setSalary(resultSet.getBigDecimal("salary"));
                 developersList.add(developer);
             }
             return developersList;
@@ -125,14 +125,14 @@ public class DeveloperDAO extends GenericDAO {
         }
     }
 
-    public void insertIntoDevelopers(String name, Long age, String gender, BigDecimal salary) {
+    public void insertIntoDevelopers(String name, Integer age, String gender, BigDecimal salary) {
 
 
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              PreparedStatement statement = connection.prepareStatement("INSERT into developers(dev_name, dev_age, dev_gender, salary) VALUES ( ?, ? , ?, ?)")) {
 
             statement.setString(1, name);
-            statement.setLong(2, age);
+            statement.setInt(2, age);
             statement.setString(3, gender);
             statement.setBigDecimal(4, salary);
             statement.executeUpdate();
@@ -145,12 +145,12 @@ public class DeveloperDAO extends GenericDAO {
         }
     }
 
-    public void updateIntoDevelopers(Long id, String name, Long age, String gender, BigDecimal salary) {
+    public void updateIntoDevelopers(Long id, String name, Integer age, String gender, BigDecimal salary) {
         try (Connection connection = DriverManager.getConnection(URL, username, password);
              PreparedStatement statement = connection.prepareStatement("UPDATE developers SET dev_name = ?, dev_age = ?, dev_gender = ?, salary = ? WHERE dev_id = ?")) {
 
             statement.setString(1, name);
-            statement.setLong(2, age);
+            statement.setInt(2, age);
             statement.setString(3, gender);
             statement.setBigDecimal(4, salary);
             statement.setLong(5, id);

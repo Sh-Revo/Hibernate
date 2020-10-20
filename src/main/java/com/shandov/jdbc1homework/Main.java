@@ -35,7 +35,7 @@ public class Main {
         // developersService.insertIntoDevelopers("Andrew", 29l, "Male", BigDecimal.valueOf(8500));
         // developersService.updateIntoDevelopers(15l, "Oleg", 22l, "Male", BigDecimal.valueOf(10000));
         // developersService.deleteFromDevelopers(14l);
-        // System.out.println("\nСписок всех разработчиков " + developersService.getAllDevelopers());
+         System.out.println("\nСписок всех разработчиков " + developersService.getAllDevelopers());
 
 
         //-----Company

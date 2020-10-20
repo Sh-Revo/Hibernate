@@ -8,29 +8,29 @@ import java.math.BigDecimal;
 @Data
 public class Developer {
 
-    private Long devId;
-    private String devName;
-    private Long devAge;
-    private DevGender devGender;
-    private BigDecimal devSalary;
+    private Long id;
+    private String name;
+    private Integer age;
+    private DevGender gender;
+    private BigDecimal salary;
 
-    public void setDevGender(String devGender) {
-        devGender = devGender.toLowerCase();
-        if (devGender.equals(DevGender.MALE.getDevGender())){
-            this.devGender = DevGender.MALE;
-        }else if (devGender.equals(DevGender.FEMALE.getDevGender())){
-            this.devGender =  DevGender.FEMALE;
+    public void setGender(String gender) {
+        gender = gender.toLowerCase();
+        if (gender.equals(DevGender.MALE.getDevGender())){
+            this.gender = DevGender.MALE;
+        }else if (gender.equals(DevGender.FEMALE.getDevGender())){
+            this.gender =  DevGender.FEMALE;
         }
     }
 
     @Override
     public String toString() {
         return "Developer{" +
-                "devId=" + devId +
-                ", devName='" + devName + '\'' +
-                ", devAge=" + devAge +
-                ", devGender='" + devGender + '\'' +
-                ", devSalary=" + devSalary +
+                "devId=" + id +
+                ", devName='" + name + '\'' +
+                ", devAge=" + age +
+                ", devGender='" + gender + '\'' +
+                ", devSalary=" + salary +
                 '}' + "\n";
     }
 }

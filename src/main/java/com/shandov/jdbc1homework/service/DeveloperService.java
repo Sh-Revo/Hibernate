@@ -29,11 +29,11 @@ public class DeveloperService {
         return developerDAO.getAllDevelopers();
     }
 
-    public void insertIntoDevelopers(String name, Long age, String gender, BigDecimal salary) {
+    public void insertIntoDevelopers(String name, Integer age, String gender, BigDecimal salary) {
         developerDAO.insertIntoDevelopers(name, age, gender, salary);
     }
 
-    public void updateIntoDevelopers(Long id, String name, Long age, String gender, BigDecimal salary) {
+    public void updateIntoDevelopers(Long id, String name, Integer age, String gender, BigDecimal salary) {
         developerDAO.updateIntoDevelopers(id, name, age, gender, salary);
     }
 

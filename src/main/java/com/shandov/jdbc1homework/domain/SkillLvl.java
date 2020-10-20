@@ -8,11 +8,11 @@ public enum SkillLvl {
 
     private String skillLvl;
 
-    SkillLvl(String skillLvl){
+    SkillLvl(String skillLvl) {
         this.skillLvl = skillLvl;
     }
 
-    String getSkillLvl(){
+    String getSkillLvl() {
         return skillLvl;
     }
 }

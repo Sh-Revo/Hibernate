@@ -6,11 +6,11 @@ public enum DevGender {
 
     private String devGender;
 
-    DevGender(String devGender){
+    DevGender(String devGender) {
         this.devGender = devGender;
     }
 
-    String getDevGender(){
+    String getDevGender() {
         return devGender;
     }
 }

@@ -11,19 +11,20 @@ public class SkillService {
 
     private final SkillDAO skillsDAO;
 
-    public List<Skill> getAllSkills() {
-        return skillsDAO.getAllSkills();
+    public void insertInSkill(Skill skill){
+        skillsDAO.insert(skill);
     }
 
-    public void insertIntoSkills(String name, String lvl) {
-        skillsDAO.insertIntoSkills(name, lvl);
+    public void updateInSkill(Skill skill){
+        skillsDAO.update(skill, skill.getId());
     }
 
-    public void updateInSkills(Long id, String name, String lvl) {
-        skillsDAO.updateInSkills(id, name, lvl);
+    public void deleteInSkill(Long id){
+        skillsDAO.delete(id);
     }
 
-    public void deleteFromSkills(Long id) {
-        skillsDAO.deleteFromSkills(id);
+    public List<Skill> getAllSkill(){
+        return skillsDAO.getAll();
     }
+
 }

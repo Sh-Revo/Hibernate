@@ -5,26 +5,38 @@ import com.shandov.jdbc1homework.dao.CompanyDAO;
 import com.shandov.jdbc1homework.domain.Company;
 import lombok.RequiredArgsConstructor;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class CompanyService {
 
     private final CompanyDAO companyDAO;
 
-    public List<Company> getAllCompanies() {
-        return companyDAO.getAllCompanies();
+//    public Company fingCompanyById(Long id){
+//        return companyDAO.findById(id)
+//                .orElseThrow(() -> new EntityNotFoundException("Company not found by id "+ id));
+//    }
+
+    public void insertInCompany(Company company){
+        companyDAO.insert(company);
     }
 
-    public void insertIntoCompanies(String name, String location) {
-        companyDAO.insertIntoCompanies(name, location);
+    public void updateInCompany(Company company){
+        companyDAO.update(company, company.getId());
     }
 
-    public void updateInCompanies(Long id, String name, String location) {
-        companyDAO.updateInCompanies(id, name, location);
+    public void deleteInCompany(Long id){
+        companyDAO.delete(id);
     }
 
-    public void deleteFromCompanies(Long id) {
-        companyDAO.deleteFromCompanies(id);
+    public List<Company> getAllCompanies(){
+        return companyDAO.getAll();
     }
+
+    public Optional<Company> getCompanyByName(String name){
+        return companyDAO.getCompanyByName(name);
+    }
+
 }

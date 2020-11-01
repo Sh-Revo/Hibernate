@@ -2,26 +2,35 @@ package com.shandov.jdbc1homework.domain;
 
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 @Data
+@Table(name = "developers")
 public class Developer {
 
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(name = "dev_id")
     private Long id;
+
+    @Column(name = "dev_name")
     private String name;
+
+    @Column(name = "dev_age")
     private Integer age;
+
+    @Column(name = "dev_gender")
+    @Enumerated(EnumType.STRING)
     private DevGender gender;
+
+    @Column(name = "salary")
     private BigDecimal salary;
 
-    public void setGender(String gender) {
-        gender = gender.toLowerCase();
-        if (gender.equals(DevGender.MALE.getDevGender())){
-            this.gender = DevGender.MALE;
-        }else if (gender.equals(DevGender.FEMALE.getDevGender())){
-            this.gender =  DevGender.FEMALE;
-        }
-    }
 
     @Override
     public String toString() {

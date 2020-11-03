@@ -1,30 +1,30 @@
-create table  if not exists developer
+create table  if not exists developers
 (
     dev_id serial primary key,
     dev_name VARCHAR(35),
     dev_age int,
     dev_gender varchar(7)
 );
-alter table developer owner to postgres;
+alter table developers owner to postgres;
 
 
 
-create table  if not exists skill
+create table  if not exists skills
 (
     skills_id serial primary key,
     skills_name varchar(35),
     skills_lvl varchar(15)
 );
-alter table skill owner to postgres;
+alter table skills owner to postgres;
 
 
-create table if not exists project
+create table if not exists projects
 (
     project_id serial primary key,
     project_name VARCHAR(35),
     project_description VARCHAR
 );
-alter table project owner to postgres;
+alter table projects owner to postgres;
 
 create table if not exists companies
 (
@@ -34,13 +34,13 @@ create table if not exists companies
 );
 alter table companies owner to postgres;
 
-create table if not exists customer
+create table if not exists customers
 (
     customer_id serial primary key,
     customer_name VARCHAR(15),
     customer_second_name VARCHAR(15)
 );
-alter table customer owner to postgres;
+alter table customers owner to postgres;
 
 create table if not exists dev_skills
 (
@@ -84,6 +84,6 @@ create table if not exists customer_projects
 );
 alter table customer_projects owner to postgres;
 
-alter table "developer" add salary int;
+alter table "developers" add salary int;
 
-alter table "project" add cost int;
+alter table "projects" add cost int;

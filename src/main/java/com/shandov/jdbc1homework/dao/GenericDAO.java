@@ -48,21 +48,11 @@ public abstract class GenericDAO<T, ID> {
         entityManager.close();
     }
 
-    public Optional<T> findById(ID id) {
-        EntityManager entityManager = getEntityManager();
-        T entityFromDB = entityManager.find(getEntityClass(), id);
-        entityManager.close();
-        return Optional.ofNullable(entityFromDB);
-    }
-
     public List<T> getAll() {
-
         EntityManager entityManager = getEntityManager();
         List<T> entityList = entityManager.createQuery("from " + getEntityClass().getSimpleName()).getResultList();
         entityManager.close();
         return entityList;
     }
-
-
 
 }

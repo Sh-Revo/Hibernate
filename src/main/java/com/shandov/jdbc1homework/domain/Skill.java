@@ -1,6 +1,7 @@
 package com.shandov.jdbc1homework.domain;
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "skills")
+@ToString(exclude = "developers")
 public class Skill {
 
     @Id
@@ -27,11 +29,11 @@ public class Skill {
     @ManyToMany(mappedBy = "skills")
     private List<Developer> developers;
 
-    public void setLvl(String lvl){
+    public void setLvl(String lvl) {
         lvl = lvl.toLowerCase();
-        if (lvl.equals(SkillLvl.JUNIOR.getSkillLvl())){
+        if (lvl.equals(SkillLvl.JUNIOR.getSkillLvl())) {
             this.lvl = SkillLvl.JUNIOR;
-        } else if (lvl.equals(SkillLvl.MIDDLE.getSkillLvl())){
+        } else if (lvl.equals(SkillLvl.MIDDLE.getSkillLvl())) {
             this.lvl = SkillLvl.MIDDLE;
         } else if (lvl.equals(SkillLvl.SENIOR.getSkillLvl())) {
             this.lvl = SkillLvl.SENIOR;

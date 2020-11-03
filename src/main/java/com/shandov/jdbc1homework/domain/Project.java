@@ -2,15 +2,18 @@ package com.shandov.jdbc1homework.domain;
 
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "projects")
+@ToString(exclude = "developers")
 public class Project {
 
     @Id
@@ -31,15 +34,7 @@ public class Project {
     @Column(name = "cost")
     private BigDecimal cost;
 
-    @Override
-    public String toString() {
-        return "Project{" +
-                "projectId=" + id +
-                ", projectName='" + name + '\'' +
-                ", projectDescription='" + description + '\'' +
-                ", projectStart=" + start +
-                ", projectCost=" + cost +
-                '}' + "\n";
-    }
+    @ManyToMany(mappedBy = "projects")
+    List<Developer> developers;
 
 }

@@ -14,16 +14,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Company company = serviceFactory.getCompanyService().fingCompanyById(1l);
-        // System.out.println(company);
-        // System.out.println(serviceFactory.getCompanyService().getAllCompanies());
-        // System.out.println(serviceFactory.getCompanyService().getCompanyByName("Nestle"));
-        // System.out.println("\nЗарплата всех разработчиков отдельного проекта: " + projectsService.salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
-        // System.out.println("\nСпикок разработчиков отдельного проекта " + developersService.getAllDevelopersByProjectName("Internet_Shop"));
-         System.out.println("\nСпикок Java разработчиков " + serviceFactory.getDeveloperService().getDeveloperBySkillsName("JS"));
-        // Skill skill = new Skill();
-        // skill.setLvl("MIDDLE");
-        // System.out.println("\nСпикок Middle разработчиков " + serviceFactory.getDeveloperService().getDeveloperBySkillsLvl(skill));
+//         System.out.println("\nЗарплата всех разработчиков отдельного проекта: " + serviceFactory.getDeveloperService().salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
+//         System.out.println("\nСпикок разработчиков отдельного проекта " + serviceFactory.getDeveloperService().getDeveloperByProjectName("Internet_Shop"));
+//         System.out.println("\nСпикок Java разработчиков " + serviceFactory.getDeveloperService().getDeveloperBySkillsName("JS"));
+//         Skill skill = new Skill();
+//         skill.setLvl("MIDDLE");
+//         System.out.println("\nСпикок Middle разработчиков " + serviceFactory.getDeveloperService().getDeveloperBySkillsLvl(skill));
+//         System.out.println("Get ALL " + serviceFactory.getDeveloperService().getAllDeveloper());
 
         //-----Project
 
@@ -44,6 +41,7 @@ public class Main {
 
 
         //-----Developer
+
 //        Developer developer = new Developer();
 //        developer.setName("Andrew");
 //        developer.setAge(29);

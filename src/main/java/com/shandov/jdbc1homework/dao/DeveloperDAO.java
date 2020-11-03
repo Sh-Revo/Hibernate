@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -22,55 +23,39 @@ public class DeveloperDAO extends GenericDAO<Developer, Long> {
     @Getter
     private final EntityManager entityManager;
 
-    public DeveloperDAO(){
+    public DeveloperDAO() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence-test");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
-    public List<Developer> getDeveloperBySkillsName(String name){
+    public List<Developer> getDeveloperBySkillsName(String name) {
         EntityManager entityManager = getEntityManager();
         List<Developer> developers = (List<Developer>) entityManager.createQuery("select dev from Developer dev join dev.skills s where s.name = ?1").setParameter(1, name).getResultList();
         entityManager.close();
         return developers;
     }
 
-//    public List<Developer> getDeveloperBySkillsLvl(Skill skill){
-//        EntityManager entityManager = getEntityManager();
-//        List<Developer> developers = (List<Developer>) entityManager.createQuery("from Skill s join s.developers where s.lvl = ?1").setParameter(1,skill.getLvl()).getResultList();
-//        entityManager.close();
-//        return developers;
-//    }
+    public List<Developer> getDeveloperBySkillsLvl(Skill skill) {
+        EntityManager entityManager = getEntityManager();
+        List<Developer> developers = (List<Developer>) entityManager.createQuery("select dev from Developer dev join dev.skills s where s.lvl = ?1").setParameter(1, skill.getLvl()).getResultList();
+        entityManager.close();
+        return developers;
+    }
+
+    public List<Developer> getDeveloperByProjectName(String name) {
+        EntityManager entityManager = getEntityManager();
+        List<Developer> developers = (List<Developer>) entityManager.createQuery("select dev from Developer dev join dev.projects pr where pr.name = ?1").setParameter(1, name).getResultList();
+        entityManager.close();
+        return developers;
+    }
+
+    public BigDecimal salaryAllDevelopersByProjectName(String name) {
+        EntityManager entityManager = getEntityManager();
+        BigDecimal developers = (BigDecimal) entityManager.createQuery("select sum(dev.salary) from Developer dev join dev.projects pr where pr.name = ?1").setParameter(1, name).getSingleResult();
+        entityManager.close();
+        return developers;
+    }
+
 }
 
-
-//    public List<Developer> getAllDevelopersByProjectName(String name) {
-//
-//        try (Connection connection = DriverManager.getConnection(URL, username, password);
-//             PreparedStatement statement = connection.prepareStatement("SELECT dev.* FROM developers dev " +
-//                     "join dev_projects dp on dev.dev_id = dp.dev_id " +
-//                     "join projects pr on dp.project_id = pr.project_id " +
-//                     "WHERE pr.project_name = ? ;")) {
-//            statement.setString(1, name);
-//            ResultSet resultSet = statement.executeQuery();
-//            List<Developer> developersList = new ArrayList<>();
-//            while (resultSet.next()) {
-//                Developer developer = new Developer();
-//                developer.setId(resultSet.getLong("dev_id"));
-//                developer.setName(resultSet.getString("dev_name"));
-//                developer.setAge(resultSet.getInt("dev_age"));
-//                developer.setGender(resultSet.getString("dev_gender"));
-//                developer.setSalary(resultSet.getBigDecimal("salary"));
-//
-//                developersList.add(developer);
-//            }
-//            return developersList;
-//        } catch (SQLException e) {
-//            log.info("SQLState: " + e.getSQLState());
-//            log.info("Message: " + e.getMessage());
-//            log.info("Vendor: " + e.getErrorCode());
-//            throw new InternalException(e.getMessage());
-//        }
-//
-//    }
-//
 

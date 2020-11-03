@@ -4,6 +4,8 @@ package com.shandov.jdbc1homework.domain;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -34,8 +36,14 @@ public class Developer {
     private BigDecimal salary;
 
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "dev_skills", joinColumns = @JoinColumn(name = "dev_id"), inverseJoinColumns = @JoinColumn(name = "skills_id"))
     private List<Skill> skills;
+
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name = "dev_projects", joinColumns = @JoinColumn(name = "dev_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
+    private List<Project> projects;
 
     @Override
     public String toString() {
@@ -46,6 +54,7 @@ public class Developer {
                 ", gender=" + gender +
                 ", salary=" + salary +
                 ", skills=" + skills +
+                ", projects=" + projects +
                 '}';
     }
 }

@@ -9,22 +9,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectService {
 
-
     private final ProjectDAO projectDAO;
 
-    public void insertInProject(Project project){
+    public void insertInProject(Project project) {
         projectDAO.insert(project);
     }
 
-    public void updateInProject(Project project){
+    public void updateInProject(Project project) {
         projectDAO.update(project, project.getId());
     }
 
-    public void deleteInProject(Long id){
+    public void deleteInProject(Long id) {
         projectDAO.delete(id);
     }
 
-    public List<Project> getAllProject(){
+    public List<Project> getAllProject() {
         return projectDAO.getAll();
     }
 }

@@ -21,7 +21,7 @@ public class ServiceFactory {
         return new DeveloperService(new DeveloperDAO());
     }
 
-    public SkillService getSkillService(){
+    public SkillService getSkillService() {
         return new SkillService(new SkillDAO());
     }
 

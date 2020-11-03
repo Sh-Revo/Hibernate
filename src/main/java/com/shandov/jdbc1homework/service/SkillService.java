@@ -11,19 +11,19 @@ public class SkillService {
 
     private final SkillDAO skillsDAO;
 
-    public void insertInSkill(Skill skill){
+    public void insertInSkill(Skill skill) {
         skillsDAO.insert(skill);
     }
 
-    public void updateInSkill(Skill skill){
+    public void updateInSkill(Skill skill) {
         skillsDAO.update(skill, skill.getId());
     }
 
-    public void deleteInSkill(Long id){
+    public void deleteInSkill(Long id) {
         skillsDAO.delete(id);
     }
 
-    public List<Skill> getAllSkill(){
+    public List<Skill> getAllSkill() {
         return skillsDAO.getAll();
     }
 

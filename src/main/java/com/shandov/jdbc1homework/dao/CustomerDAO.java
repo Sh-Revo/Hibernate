@@ -20,7 +20,7 @@ public class CustomerDAO extends GenericDAO<Customer, Long> {
     @Getter
     private final EntityManager entityManager;
 
-    public CustomerDAO(){
+    public CustomerDAO() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence-test");
         this.entityManager = entityManagerFactory.createEntityManager();
     }

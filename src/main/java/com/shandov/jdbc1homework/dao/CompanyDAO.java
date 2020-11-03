@@ -26,18 +26,9 @@ public class CompanyDAO extends GenericDAO<Company, Long> {
     @Getter
     private final EntityManager entityManager;
 
-    public CompanyDAO(){
+    public CompanyDAO() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence-test");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
-
-//    public Optional<Company> getCompanyByName(String name) {
-//
-//        EntityManager entityManager = getEntityManager();
-//        Company company = (Company) entityManager.createQuery("from Company c where c.name = ?1").setParameter(1, name).getSingleResult();
-//        entityManager.close();
-//        return Optional.ofNullable(company);
-//    }
-
 
 }

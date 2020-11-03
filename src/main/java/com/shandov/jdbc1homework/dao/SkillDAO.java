@@ -23,7 +23,7 @@ public class SkillDAO extends GenericDAO<Skill, Long> {
     @Getter
     private final EntityManager entityManager;
 
-    public SkillDAO(){
+    public SkillDAO() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence-test");
         this.entityManager = entityManagerFactory.createEntityManager();
     }

@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,6 +24,9 @@ public class Skill {
     @Column(name = "skills_lvl")
     private SkillLvl lvl;
 
+    @ManyToMany(mappedBy = "skills")
+    private List<Developer> developers;
+
     public void setLvl(String lvl){
         lvl = lvl.toLowerCase();
         if (lvl.equals(SkillLvl.JUNIOR.getSkillLvl())){
@@ -34,12 +38,5 @@ public class Skill {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Skill{" +
-                "skillsId=" + id +
-                ", skillsName='" + name + '\'' +
-                ", skillsLvl='" + lvl + '\'' +
-                '}' + "\n";
-    }
+
 }

@@ -31,14 +31,13 @@ public class CompanyDAO extends GenericDAO<Company, Long> {
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
-    public Optional<Company> getCompanyByName(String name) {
-
-        EntityManager entityManager = getEntityManager();
-        //Object optional =  entityManager.createQuery("from Company c where c.name = ?1").setParameter(1, name).getSingleResult();
-        Company company = (Company) entityManager.createQuery("from Company c where c.name = ?1").setParameter(1, name).getSingleResult();
-        entityManager.close();
-        return Optional.ofNullable(company);
-    }
+//    public Optional<Company> getCompanyByName(String name) {
+//
+//        EntityManager entityManager = getEntityManager();
+//        Company company = (Company) entityManager.createQuery("from Company c where c.name = ?1").setParameter(1, name).getSingleResult();
+//        entityManager.close();
+//        return Optional.ofNullable(company);
+//    }
 
 
 }

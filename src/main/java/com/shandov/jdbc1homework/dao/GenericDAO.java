@@ -1,6 +1,5 @@
 package com.shandov.jdbc1homework.dao;
 
-import com.shandov.jdbc1homework.domain.Company;
 import lombok.Getter;
 
 import javax.persistence.EntityManager;

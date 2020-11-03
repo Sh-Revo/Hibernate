@@ -11,11 +11,6 @@ import java.util.Date;
 
 public class Main {
     private static final ServiceFactory serviceFactory = new ServiceFactory();
-//    public static final ProjectService projectsService = new ProjectService(new ProjectDAO());
-//    public static final DeveloperService developersService = new DeveloperService(new DeveloperDAO());
-//    public static final CompanyService companiesService = new CompanyService(new CompanyDAO());
-//    public static final CustomerService customersService = new CustomerService(new CustomerDAO());
-//    public static final SkillService skillsService = new SkillService(new SkillDAO());
 
     public static void main(String[] args) {
 
@@ -25,9 +20,10 @@ public class Main {
         // System.out.println(serviceFactory.getCompanyService().getCompanyByName("Nestle"));
         // System.out.println("\nЗарплата всех разработчиков отдельного проекта: " + projectsService.salaryAllDevelopersByProjectName("Internet_Shop") + "\n");
         // System.out.println("\nСпикок разработчиков отдельного проекта " + developersService.getAllDevelopersByProjectName("Internet_Shop"));
-        // System.out.println("\nСпикок Java разработчиков " + developersService.getAllDevelopersBySkillsName("Java"));
-        // System.out.println("\nСпикок Middle разработчиков " + developersService.getAllDevelopersBySkillsLvl("Middle"));
-
+         System.out.println("\nСпикок Java разработчиков " + serviceFactory.getDeveloperService().getDeveloperBySkillsName("JS"));
+        // Skill skill = new Skill();
+        // skill.setLvl("MIDDLE");
+        // System.out.println("\nСпикок Middle разработчиков " + serviceFactory.getDeveloperService().getDeveloperBySkillsLvl(skill));
 
         //-----Project
 

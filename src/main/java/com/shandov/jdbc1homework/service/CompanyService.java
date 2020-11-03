@@ -35,8 +35,8 @@ public class CompanyService {
         return companyDAO.getAll();
     }
 
-    public Optional<Company> getCompanyByName(String name){
-        return companyDAO.getCompanyByName(name);
-    }
+//    public Optional<Company> getCompanyByName(String name){
+//        return companyDAO.getCompanyByName(name);
+//    }
 
 }

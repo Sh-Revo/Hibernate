@@ -2,10 +2,12 @@ package com.shandov.jdbc1homework.domain;
 
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,16 +33,20 @@ public class Developer {
     @Column(name = "salary")
     private BigDecimal salary;
 
+    @ManyToMany
+    @JoinTable(name = "dev_skills", joinColumns = @JoinColumn(name = "dev_id"), inverseJoinColumns = @JoinColumn(name = "skills_id"))
+    private List<Skill> skills;
 
     @Override
     public String toString() {
         return "Developer{" +
-                "devId=" + id +
-                ", devName='" + name + '\'' +
-                ", devAge=" + age +
-                ", devGender='" + gender + '\'' +
-                ", devSalary=" + salary +
-                '}' + "\n";
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", salary=" + salary +
+                ", skills=" + skills +
+                '}';
     }
 }
 

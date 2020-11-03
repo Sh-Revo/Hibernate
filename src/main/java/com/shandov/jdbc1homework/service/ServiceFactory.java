@@ -24,4 +24,5 @@ public class ServiceFactory {
     public SkillService getSkillService(){
         return new SkillService(new SkillDAO());
     }
+
 }
